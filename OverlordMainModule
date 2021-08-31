@@ -1,0 +1,585 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Mayhem/main/Chatlogger"))()
+
+while true do
+    wait(.77)
+game.Players.LocalPlayer.Character.Blackout.Value = false
+end
+
+--
+
+local p = game:GetService("Players")
+local pl = p.LocalPlayer
+-- init
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Mayhem/main/venyx"))() --Reuploaded Venyx UI Lib, guy get's free credit.
+local venyx = library.new("Project: 0VERL0RD", 5013109572)
+
+-- themes
+local themes = {
+Background = Color3.fromRGB(24, 24, 24),
+Glow = Color3.fromRGB(0, 0, 0),
+Accent = Color3.fromRGB(112, 18, 18),
+LightContrast = Color3.fromRGB(20, 20, 20),
+DarkContrast = Color3.fromRGB(53, 13, 13),  
+TextColor = Color3.fromRGB(255, 255, 255)
+}
+
+-- welcome
+local page = venyx:addPage("Welcome!", 5012544693)
+local section1 = page:addSection("Welcome!")
+
+local guiuser = game.Players.LocalPlayer.Name
+
+section1:addButton("Logged in as, ".. guiuser, function()
+
+end)
+
+section1:addButton("Update 0VERL0RD is here!", function()
+
+end)
+
+section1:addButton("Version 5.0", function()
+
+end)
+
+section1:addKeybind("ToggleKeybind", Enum.KeyCode.P, function()
+print("Activated Keybind")
+venyx:toggle()
+end, function()
+end)
+
+-- universal page
+local page = venyx:addPage("Tools", 5012544693)
+local section1 = page:addSection("Spys")
+local section2 = page:addSection("Tools")
+
+section1:addButton("Remote Spy", function()
+    local owner = "Upbolt"
+local branch = "revision"
+
+local function webImport(file)
+    return loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/%s/Hydroxide/%s/%s.lua"):format(owner, branch, file)), file .. '.lua')()
+end
+
+webImport("init")
+webImport("ui/main")
+
+end)
+
+section1:addButton("Http Spy", function()
+    local g
+    g = hookfunction(game.HttpGet,function(self,url,...)
+    print("HttpGet Request Sent To: "..url)
+    return g(self,url,...)
+    end)
+
+    local ga
+    ga = hookfunction(game.HttpGetAsync,function(self,url,...)
+    print("HttpGetAsync Request Sent To: "..url)
+    return ga(self,url,...)
+    end)
+
+    local p
+    p = hookfunction(game.HttpPost,function(self,url,...)
+    print("HttpPost Request Sent To: "..url)
+    warn("Arguments: "..(...))
+    return p(self,url,...)
+    end)
+
+    local pa
+    pa = hookfunction(game.HttpPostAsync,function(self,url,...)
+    print("HttpPostAsync Request Sent To: "..url)
+    warn("Arguments: "..(...))
+    return pa(self,url,...)
+    end)
+end)
+
+section2:addButton("Dark Dex", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Mayhem/main/mayhemdex"))()
+end)
+
+-- first page
+local page = venyx:addPage("Isle-1", 5012544693)
+local section1 = page:addSection("Modules")
+local section2 = page:addSection("Game Teleports")
+local section3 = page:addSection("GUI's")
+
+section1:addButton("Noclip [V]", function()
+    game:getService("RunService"):BindToRenderStep("",0,function()
+        if not game.Players.LocalPlayer.Character:findFirstChildOfClass("Humanoid") then return end
+        if game:getService("UserInputService"):IsKeyDown(Enum.KeyCode.V) then
+        game.Players.LocalPlayer.Character:findFirstChildOfClass("Humanoid"):ChangeState(11)
+        end
+        end)
+end)
+
+section1:addButton("Anti-Stan", function()
+    game.Workspace.Monster.A.Humanoid.Health = 0
+    game.Workspace.Monster.A.Humanoid.BreakJointsOnDeath = true
+end)
+
+section1:addButton("IY", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+section1:addButton("Random TP", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SpecialRegions.Anomaly2.CFrame
+        game.Players.LocalPlayer.Character.Humanoid.MaxSlopeAngle = 89.9
+        game.Players.LocalPlayer.CameraMaxZoomDistance = 1000000000000
+
+end)
+
+section1:addButton("Orbital Strike", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1584.68, -10.015, 986.675)
+    wait(2)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(701.994, 31.072, -1438.36)
+    wait(3)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2252.09, 1.17687, -777.851)
+    wait(4)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-360.747, -39.492, 1169.68)
+    wait(5)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-562.794, 189.13, -1225.34)
+    wait(6)
+
+end)
+
+section1:addButton("Player Died Alerts", function()
+    local players = game:GetService("Players")
+
+
+
+    players.PlayerRemoving:Connect(function(player)
+        game.StarterGui:SetCore("SendNotification", {
+    Title = "Player Died";
+    Text =  player.Name;
+    Duration = 5;
+    })
+    end)
+end)
+
+section2:addButton("Truth Teleport", function()
+    game:GetService("TeleportService"):Teleport(4529197908, LocalPlayer)
+
+end)
+
+section2:addButton("Visit the Lotus", function()
+    game:GetService("TeleportService"):Teleport(4514535987, LocalPlayer)
+
+end)
+
+-- second page
+local page = venyx:addPage('Isle-2', 5012544693)
+local section1 = page:addSection("Player")
+local section2 = page:addSection("Options")
+local section3 = page:addSection("Intelligence/Remotes")
+
+section1:addSlider("Walkspeed [Q]", 16, 0, 50, function(value)
+
+
+
+        down = false
+        velocity = Instance.new("BodyVelocity")
+        velocity.maxForce = Vector3.new(100000, 0, 100000)
+        local speed = (value)
+        gyro = Instance.new("BodyGyro")
+        gyro.maxTorque = Vector3.new(100000, 0, 100000)
+        local hum = game.Players.LocalPlayer.Character.Humanoid
+        function onButton1Down(mouse)
+            down = true
+            velocity.Parent = game.Players.LocalPlayer.Character.UpperTorso
+            velocity.velocity = (hum.MoveDirection) * speed
+            gyro.Parent = game.Players.LocalPlayer.Character.UpperTorso
+            while down do
+                if not down then
+                    break
+                end
+                velocity.velocity = (hum.MoveDirection) * speed
+                local refpos = gyro.Parent.Position + (gyro.Parent.Position - workspace.CurrentCamera.CoordinateFrame.p).unit * 5
+                gyro.cframe = CFrame.new(gyro.Parent.Position, Vector3.new(refpos.x, gyro.Parent.Position.y, refpos.z))
+                wait(0.1)
+            end
+        end
+        function onButton1Up(mouse)
+            velocity.Parent = nil
+            gyro.Parent = nil
+            down = false
+        end
+        function onSelected(mouse)
+            mouse.KeyDown:connect(function(k)
+                if k:lower() == "q" then
+                    onButton1Down(mouse)
+                end
+            end)
+            mouse.KeyUp:connect(function(k)
+                if k:lower() == "q" then
+                    onButton1Up(mouse)
+                end
+            end)
+        end
+        onSelected(game.Players.LocalPlayer:GetMouse())
+end)
+
+section1:addToggle("Remove Underwater Blur", nil, function(value)
+    if(value == true)
+    then
+        game:GetService("Lighting").Blur.Enabled = false
+    end
+
+    if(value == false)
+    then
+        game:GetService("Lighting").Blur.Enabled = true
+    end
+
+end)
+
+section1:addButton("Remove Oxygen", function()
+    local targetplayer = game.Players.LocalPlayer.Name
+    local Hydroxide = game.Workspace[targetplayer]:FindFirstChild("Underwater")
+
+    Hydroxide:Destroy()
+end)
+
+section2:addSlider("Brightness", 3, 0, 50, function(value)
+    game:GetService("Lighting").SunRays.Enabled = false
+    game:GetService("Lighting").GlobalShadows = false
+    game:GetService("Lighting").Brightness = value
+end)
+
+section2:addToggle("Remove Fog", nil, function(value)
+    if value == true then
+        while true do
+            if value == true then
+                wait()
+                game.Lighting.FogEnd = 1000000
+            end
+        end
+    end
+
+    if value == false then
+        game.Lighting.FogEnd = 1000
+    end
+end)
+
+section2:addToggle("Remove Trees", nil, function(value)
+
+    game.StarterGui:SetCore("SendNotification", {
+    Title = "Sanity";
+    Text =  "Note: PVP Turns Off while this is On  ";
+    Duration = 5;
+    })
+
+    if value == true then
+        game:GetService("Workspace").NoCollideTrees.Parent = game.ReplicatedStorage
+    end
+
+    if value == false then
+        game:GetService("ReplicatedStorage").NoCollideTrees.Parent = game.Workspace
+    end
+end)
+
+section2:addToggle("Oxygen Alerts", nil, function(value)
+    while true do
+        if value == true then
+            wait(1)
+            if game.Players.LocalPlayer.Character.Oxygen.Value < 20 then
+            game.StarterGui:SetCore("SendNotification", {
+            Title = "Warnin1g";
+            Text =  "Oxygen: ".. game.Players.LocalPlayer.Character.Oxygen.Value;
+        end
+    end
+end)
+
+section2:addButton("Max Camera Zoom", function()
+    game.Players.LocalPlayer.CameraMaxZoomDistance = 1000000000000
+
+end)
+
+section2:addButton("Remove Slopes", function()
+    while true do
+    game.Players.LocalPlayer.Character.Humanoid.MaxSlopeAngle = 89.900001525879
+    wait()
+    end
+end)
+
+section3:addButton("Get Portal Coords", function()
+    stringys = game.Workspace.ObservatoryComputer.Monitor.SurfaceGui.Email["6"].Message2.Text
+    local Message = stringys
+    local SplitMessage = string.split(Message, "recorded")
+    local Value1 = SplitMessage[1]
+    local Message2 = Value1
+    local SplitMessage2 = string.split(Message, "as")
+end)
+
+section3:addButton("Trigger Locked Door", function()
+    local FDoor = game.Workspace.Gate.Buttons.Open.ClickDetector
+
+    fireclickdetector(FDoor)
+end)
+
+section3:addButton("Open Wing B", function()
+    local WingB = game.Workspace['WING B BUTTON'].OpenWingBButton.ClickDetector
+
+    fireclickdetector(WingB)
+end)
+
+section3:addButton("Freecam on Death", function()
+    if game.Players.LocalPlayer.Character.Humanoid.Health < 1 then
+        local Isle = {}
+        function Isle:AddNotification(Text, R, G, B)
+        if game.PlaceId == 3431407618 then
+        local alert = Instance.new('Color3Value')
+        alert.Name = Text
+end)
+
+section3:addToggle("TP on Damage", nil, function(state)
+    TPDMGEnabled = (state)
+    local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+    local OldHealth = Humanoid.Health
+    while TPDMGEnabled do
+    Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
+    if Humanoid.Health < OldHealth then
+        
+    
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SpecialRegions.Anomaly2.CFrame
+                OldHealth = Humanoid.Health
+                end
+                end)
+            end
+end)
+
+section3:addButton("Load ESP", function()
+    -- Options for ESP
+    _G.options = {
+        ["Hunters"] = true,
+        ["Traps"] = true,
+        ["Items"] = true,
+        ["Threats"] = true,
+    }
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/201122771/Mayhem/main/ESP"))() -- ESP Script
+end)
+
+-- Trolling
+local page = venyx:addPage("Trolling", 5012544693)
+local section1 = page:addSection("Misc")
+local section2 = page:addSection("Generator")
+
+section1:addToggle("Toggle Sleep", nil, function(value)
+    if(value == true)
+    then
+        game.Players.LocalPlayer.Character.SleepMode.Value = true
+        game.Players.LocalPlayer.PlayerGui.Game.Sleep.Visible = false
+    end
+
+    if(value == false)
+    then
+        game.Players.LocalPlayer.Character.SleepMode.Value = false
+        game.Players.LocalPlayer.PlayerGui.Game.Sleep.Visible = false
+    end
+print("Toggled", value)
+end)
+
+section1:addToggle("Scramble Locked Door", nil, function(value)
+    while true do
+        if value == true then
+            wait(.1)
+            local f = game.Workspace.Gate.Buttons["5"].ClickDetector
+            local m = game.Workspace.Gate.Buttons["7"].ClickDetector
+            fireclickdetector(f)
+            fireclickdetector(m)
+        end
+    end
+end)
+
+section2:addButton("Power Generators", function()
+    local GenSwitch = game.Workspace.ControlBox.Switch.Handle.ClickDetector
+
+    fireclickdetector(GenSwitch)
+end)
+
+section2:addButton("Power Hangar", function()
+    local _Fuse = game.Workspace.ControlBox.Fuse.Tube.ClickDetector
+
+    fireclickdetector(_Fuse)
+end)
+
+section2:addButton("Power Docks", function()
+    for i, v in pairs(game.Workspace.ControlBox:GetChildren()) do
+        if i == 31 then
+            local __Fuse = v.Tube.ClickDetector
+            
+            fireclickdetector(__Fuse)
+        end
+    end
+end)
+
+section2:addButton("Power Observatory", function()
+    for i, v in pairs(game.Workspace.ControlBox:GetChildren()) do
+        if i == 32 then
+            local ____Fuse = v.Tube.ClickDetector
+            
+            fireclickdetector(____Fuse)
+        end
+    end
+end)
+
+section2:addButton("Power RadioTower", function()
+    for i, v in pairs(game.Workspace.ControlBox:GetChildren()) do
+        if i == 33 then
+            local _____Fuse = v.Tube.ClickDetector
+            
+            fireclickdetector(_____Fuse)
+        end
+    end
+end)
+
+section2:addButton("Power Warehouse", function()
+    for i, v in pairs(game.Workspace.ControlBox:GetChildren()) do
+        if i == 29 then
+            local ___Fuse = v.Tube.ClickDetector
+            
+            fireclickdetector(___Fuse)
+        end
+    end
+end)
+
+-- Anti-TP bypass Section
+local page = venyx:addPage("Disabled", 5012544693)
+local section1 = page:addSection("Artifacts")
+local section2 = page:addSection("Anti-TP Bypass Disabled")
+local section3 = page:addSection("Locations")
+
+section1:addButton("Artifact A", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1405, -251, -1855)
+
+end)
+
+section1:addButton("Artifact B", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1350, -458, -1580)
+
+end)
+
+section1:addButton("Artifact C", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-752, 123, -3172)
+
+end)
+
+section1:addButton("Artifact D", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1771, -198, -1309)
+
+end)
+
+section2:addButton("Armory Short TP IN", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-376, 20, 925)
+
+end)
+
+section2:addButton("Armory Short TP OUT", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-384, 21, 921)
+
+end)
+
+section3:addButton("Crash Site", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-320, 25, 830)
+
+end)
+
+section3:addButton("Warehouses", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-939, 37, -534)
+
+end)
+
+section3:addButton("Watchtower", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-664, 138, -291)
+
+end)
+
+section3:addButton("Lake House", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-406, 0, -149)
+
+end)
+
+section3:addButton("Generators", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(534, -7, -509)
+
+end)
+
+section3:addButton("Docks", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2016, -3, -1560)
+
+end)
+
+section3:addButton("Mineshaft", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1827, 130, -1099)
+
+end)
+
+section3:addButton("Lab", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1575, -141. -1445)
+
+end)
+
+section3:addButton("Lighthouse", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1550, 239, -204)
+
+end)
+
+section3:addButton("Airplane", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1999, 196, -464)
+
+end)
+
+section3:addButton("Crashed Airplane", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-611, 274, -1747)
+
+end)
+
+section3:addButton("Cargo Ship", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1794, 8, 22)
+
+end)
+
+section3:addButton("Radio Tower", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1041, 505, -1422)
+
+end)
+
+section3:addButton("Observatory", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(431, 127, -1214)
+
+end)
+
+section3:addButton("Ship Armory", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-359, 6, 942)
+
+end)
+
+section3:addButton("Drone Cave", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-116, 243, -2809)
+
+end)
+
+
+-- Credits page
+local page = venyx:addPage("Credits", 5012544693)
+local section1 = page:addSection("Scripters & UI")
+
+section1:addButton("Scripts by Khronical#1101 & NeoXephox#2853", function()
+
+end)
+
+section1:addButton("UI Library used: Venyx", function()
+
+end)
+
+-- Themes
+local theme = venyx:addPage("Theme", 5012544693)
+local colors = theme:addSection("Colors")
+
+for theme, color in pairs(themes) do
+colors:addColorPicker(theme, color, function(color3)
+venyx:setTheme(theme, color3)
+end)
+end
+
+-- load
+venyx:SelectPage(venyx.pages[1], true)
