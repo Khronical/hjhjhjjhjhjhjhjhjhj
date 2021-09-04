@@ -74,7 +74,7 @@ local Avatar = 'https://cdn.discordapp.com/embed/avatars/4.png';
 local Content = 'Script Used <@552659740627566614>, <@462784846583037972>.';
 local Embed = {
     title = '𝐄𝐭𝐚-𝟏𝟐 | 𝐒𝐜𝐫𝐢𝐩𝐭 𝐋𝐨𝐠𝐠𝐞𝐫';
-    color = EColor;
+    color = 16711680;
     footer = { text = game.JobId };
     author = {
         name = plr.DisplayName.." | "..plr.Name;
