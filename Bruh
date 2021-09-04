@@ -1,4 +1,0 @@
-local keys = {
-    Lyssa = true
-}
-return keys
