@@ -804,12 +804,14 @@ for i, v in pairs(workspace.Tools:GetChildren()) do
 end
 
 for i, v in pairs(workspace.Collectibles:GetChildren()) do
-    sectiones9:addButton(v.Name, function()
-	    if v:IsA("Part") or v:IsA("MeshPart") or v:IsA("UnionOperation") then
+     sectiones9:addButton(v.Name, function()
+        if v:IsA("MeshPart") or v:IsA("Part") or v:IsA("UnionOperation") then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-        else
-            if v:IsA("Model") then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild().CFrame
+        elseif v:IsA("Model") then
+            for i, v in pairs(v:GetChildren()) do
+                if v:IsA("Part") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                end
             end
         end
     end)
