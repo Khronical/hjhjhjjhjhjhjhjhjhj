@@ -1,260 +1,929 @@
--- Instances:
+--[[
 
-local ChatSystemFunctions = Instance.new("ScreenGui")
-local WhitelistModule = Instance.new("Frame")
-local Title = Instance.new("TextLabel")
-local Input = Instance.new("TextBox")
-local Confirm = Instance.new("TextButton")
-local Line = Instance.new("Frame")
-local Blackout = Instance.new("Frame")
-local Title_2 = Instance.new("TextLabel")
-local Line_2 = Instance.new("Frame")
-local Alert = Instance.new("TextLabel")
-local Outline = Instance.new("TextLabel")
-local _Outline = Instance.new("TextLabel")
+    Made by
+    NeoXephox#2853 & Khronical#1101
 
-local Main = WhitelistModule
-local Out = ChatSystemFunctions
-local TextLabel = Out:WaitForChild("Blackout"):WaitForChild("Alert")
+]]
 
---Properties:
+_G.Speed = "q"
+_G.Noclip = "v"
+_G.Toggle = "k"
 
-ChatSystemFunctions.Name = "ChatSystemFunctions"
-ChatSystemFunctions.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("Chat")
-ChatSystemFunctions.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-WhitelistModule.Name = "WhitelistModule"
-WhitelistModule.Parent = ChatSystemFunctions
-WhitelistModule.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
-WhitelistModule.BorderColor3 = Color3.fromRGB(72, 72, 72)
-WhitelistModule.BorderSizePixel = 10
-WhitelistModule.ClipsDescendants = true
-WhitelistModule.Position = UDim2.new(0.429918379, 0, 0.433918118, 0)
-WhitelistModule.Size = UDim2.new(0, 221, 0, 113)
+if game.PlaceId == 3431407618 then
 
-Title.Name = "Title"
-Title.Parent = WhitelistModule
-Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title.BackgroundTransparency = 1.000
-Title.BorderSizePixel = 0
-Title.Position = UDim2.new(0.0497737564, 0, 0, 0)
-Title.Size = UDim2.new(0, 200, 0, 47)
-Title.Font = Enum.Font.TitilliumWeb
-Title.Text = "OVERLORD"
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextSize = 50.000
 
-Input.Name = "Input"
-Input.Parent = WhitelistModule
-Input.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
-Input.BorderSizePixel = 0
-Input.Position = UDim2.new(-0.0271493215, 0, 0.471885532, 0)
-Input.Size = UDim2.new(0, 234, 0, 21)
-Input.Font = Enum.Font.Ubuntu
-Input.PlaceholderColor3 = Color3.fromRGB(208, 208, 208)
-Input.PlaceholderText = "Input Key Here..."
-Input.Text = ""
-Input.TextColor3 = Color3.fromRGB(255, 255, 255)
-Input.TextSize = 11.000
+local Isle = {}
+function Isle:Notify(Text, R, G, B)
+    if game.PlaceId == 3431407618 then
+    local alert = Instance.new('Color3Value')
+    alert.Name = Text
+    alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
+    alert.Value = Color3.fromRGB(255, 255, 255)
+    for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Game.Alert:GetChildren()) do
+        if v.Text == alert.Name then
+            v.TextColor3 = Color3.fromRGB(R, G, B)
+        end
+    end
+    elseif game.PlaceId == 3095204897 then
+        local alert = Instance.new('Color3Value')
+        alert.Name = Text
+        alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
+        alert.Value = Color3.fromRGB(255, 255, 255)
+        for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Alert.Alert:GetChildren()) do
+            if v.Text == alert.Name then
+                v.TextColor3 = Color3.fromRGB(R, G, B)
+            end
+        end
+    end
+end
 
-Confirm.Name = "Confirm"
-Confirm.Parent = WhitelistModule
-Confirm.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-Confirm.BorderSizePixel = 0
-Confirm.Position = UDim2.new(0.371040732, 0, 0.736954331, 0)
-Confirm.Size = UDim2.new(0, 57, 0, 22)
-Confirm.Font = Enum.Font.Ubuntu
-Confirm.Text = "Confirm"
-Confirm.TextColor3 = Color3.fromRGB(255, 255, 255)
-Confirm.TextSize = 14.000
-Confirm.MouseButton1Down:Connect(function()
+Isle:Notify("Made by NeoXephox & Khronical", 255, 255, 255)
+
+
+
+
+
+if game.CoreGui:FindFirstChild('Project - OVERLORD') then
+game.CoreGui['Project - OVERLORD']:Destroy()
+end
+if game.CoreGui:FindFirstChild("LogHolder") then
+game.CoreGui.LogHolder:Destroy()
+end
+
+
+local LogHolder = Instance.new("ScreenGui")
+local Logs = Instance.new("Frame")
+local Scroll = Instance.new("ScrollingFrame")
+local Template = Instance.new("TextLabel")
+
+LogHolder.Name = "LogHolder"
+if game:service('RunService'):IsStudio() then LogHolder.Parent = game.Players.LocalPlayer.PlayerGui else
+	LogHolder.Parent = game.CoreGui
+end
+
+Logs.Name = "Logs"
+Logs.Parent = LogHolder
+Logs.AnchorPoint = Vector2.new(0.5, 0.5)
+Logs.BackgroundColor3 = Color3.new(1, 1, 1)
+Logs.Position = UDim2.new(0.200000003, 0, 0.200000003, 0)
+Logs.Size = UDim2.new(0, 400, 0, 250)
+Logs.Style = Enum.FrameStyle.DropShadow
+
+Scroll.Name = "Scroll"
+Scroll.Parent = Logs
+Scroll.BackgroundColor3 = Color3.new(1, 1, 1)
+Scroll.BackgroundTransparency = 1
+Scroll.BorderSizePixel = 0
+Scroll.Size = UDim2.new(1, 0, 1, 0)
+Scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+Scroll.ScrollBarThickness = 6
+
+Template.Name = "Template"
+Template.Parent = Logs
+Template.BackgroundColor3 = Color3.new(1, 1, 1)
+Template.BackgroundTransparency = 1
+Template.Position = UDim2.new(0, 0, 0, -25)
+Template.Size = UDim2.new(1, 0, 0, 20)
+Template.Font = Enum.Font.ArialBold
+Template.Text = ""
+Template.TextColor3 = Color3.new(1, 1, 1)
+Template.TextSize = 15
+Template.TextXAlignment = Enum.TextXAlignment.Left
+Template.TextWrap = true
+
+Logs.Active = true
+Logs.Draggable = true
+
+local loggedTable = {}
+
+local getTotalSize = function()
+local totalSize = UDim2.new(0, 0, 0, 0)
 	
-	_G.key = Input.Text
-
-	local whitelistcheck = loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/Keys", true))()
-
-	LoginKey.TextEditable = false
-
-	LoginKey.Text = "Checking Whitelist..."
-	LoginKey.PlaceholderText = "Checking Whitelist..."
-
-	wait(2)
-
-	LoginKey.Text = "Getting HWID..."
-	LoginKey.PlaceholderText = "Getting HWID..."
-
-	wait(2)
-
-	if whitelistcheck[_G.key] then
-				Main:TweenSize(UDim2.new(0, 221,0, 5), "Out", "Linear", 0.2)
-
-				wait(.2)
-
-				Main:Destroy()
-				Out.Blackout.Visible = true
-
-				wait(.1)
-
-				Out.Blackout:TweenPosition(UDim2.new(-0.079, 0,0.415, 0), "Out", "Linear", .08)
-
-				Out.Blackout:TweenSize(UDim2.new(0, 2000,0, 144), "Out", "Linear", .08)
-
-				Out.Blackout.BackgroundTransparency = 0.8
-				Out.Blackout.Outline.BackgroundTransparency = 0.8
-				Out.Blackout._Outline.BackgroundTransparency = 0.8
-				Out.Blackout.Line.BackgroundTransparency = 0.8
-				Out.Blackout.Alert.TextTransparency = 0.8
-				wait(.01)
-				Out.Blackout.BackgroundTransparency = 0.7
-				Out.Blackout.Outline.BackgroundTransparency = 0.7
-				Out.Blackout._Outline.BackgroundTransparency = 0.7
-				Out.Blackout.Line.BackgroundTransparency = 0.7
-				Out.Blackout.Alert.TextTransparency = 0.7
-				wait(.01)
-				Out.Blackout.BackgroundTransparency = 0.6
-				Out.Blackout.Outline.BackgroundTransparency = 0.6
-				Out.Blackout._Outline.BackgroundTransparency = 0.6
-				Out.Blackout.Line.BackgroundTransparency = 0.6
-				Out.Blackout.Alert.TextTransparency = 0.6
-				wait(.01)
-				Out.Blackout.BackgroundTransparency = 0.5
-				Out.Blackout.Outline.BackgroundTransparency = 0.5
-				Out.Blackout._Outline.BackgroundTransparency = 0.5
-				Out.Blackout.Line.BackgroundTransparency = 0.5
-				Out.Blackout.Alert.TextTransparency = 0.5
-				wait(.01)
-				Out.Blackout.BackgroundTransparency = 0.4
-				Out.Blackout.Outline.BackgroundTransparency = 0.4
-				Out.Blackout._Outline.BackgroundTransparency = 0.4
-				Out.Blackout.Line.BackgroundTransparency = 0.4
-				Out.Blackout.Alert.TextTransparency = 0.4
-				wait(.01)
-				Out.Blackout.BackgroundTransparency = 0.3
-				Out.Blackout.Outline.BackgroundTransparency = 0.3
-				Out.Blackout._Outline.BackgroundTransparency = 0.3
-				Out.Blackout.Line.BackgroundTransparency = 0.3
-				Out.Blackout.Alert.TextTransparency = 0.3
-				wait(.01)
-				Out.Blackout.BackgroundTransparency = 0.2
-				Out.Blackout.Outline.BackgroundTransparency = 0.2
-				Out.Blackout._Outline.BackgroundTransparency = 0.2
-				Out.Blackout.Line.BackgroundTransparency = 0.2
-				Out.Blackout.Alert.TextTransparency = 0.2
-				wait(.01)
-				Out.Blackout.BackgroundTransparency = 0.1
-				Out.Blackout.Outline.BackgroundTransparency = 0.1
-				Out.Blackout._Outline.BackgroundTransparency = 0.1
-				Out.Blackout.Line.BackgroundTransparency = 0.1
-				Out.Blackout.Alert.TextTransparency = 0.1
-				wait(.01)
-				Out.Blackout.BackgroundTransparency = 0
-				Out.Blackout.Outline.BackgroundTransparency = 0
-				Out.Blackout._Outline.BackgroundTransparency = 0
-				Out.Blackout.Line.BackgroundTransparency = 0
-				Out.Blackout.Alert.TextTransparency = 0
-
-				Out.Blackout.Title.TextTransparency = 0
-
-				wait(.2)
-
-				-- Alert Animation
-
-				local function typewrite(object, text)
-					for i = 1,#text,1 do
-						object.Text = string.sub(text,1,i)
-						wait(0.01)
-					end
-				end
-
-				typewrite(Out.Blackout.Title, "PROJECT-OVERLORD")
-
-				typewrite(TextLabel, "Welcome to the Revolution, ".. game.Players.LocalPlayer.Name)
-
-				Done = true
-
-				wait(2)
-
-				Out.Blackout:TweenPosition(UDim2.new(-0.109, 0,0.588, 0), "Out", "Linear", .15)
-
-				Out.Blackout:TweenSize(UDim2.new(0, 2000,0, 0), "Out", "Linear", .15)
-
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/PoggerChampRobloxPrintScript", true))()
-	else 
-		game:GetService("Players").LocalPlayer:Kick("Fuck off, Retard")
+	for i, v in next, loggedTable do
+		totalSize = totalSize + UDim2.new(0, 0, 0, v.Size.Y.Offset)
 	end
+	
+	return totalSize
+end
+
+local BUD = UDim2.new(0, 0, 0, 0)
+local TotalNum = 0
+
+local function GenLog(txt, colo, time)
+	local oldColo = Color3.fromRGB(0, 0, 0)	
+	
+	local Temp = Template:Clone()
+	Temp.Parent = Scroll
+	Temp.Name = txt..'Logged'
+	Temp.Text = tostring(txt)
+	Temp.Visible = true
+	Temp.Position = BUD + UDim2.new(0, 0, 0, 0)
+	if colo then oldColo = colo Temp.TextColor3 = colo elseif not colo then Temp.TextColor3 = Color3.fromRGB(200, 200, 200) end
+
+	local timeVal = Instance.new('StringValue', Temp)
+	timeVal.Name = 'TimeVal'
+	timeVal.Value = time
+
+	TotalNum = TotalNum + 1
+	
+	if not Temp.TextFits then repeat Temp.Size = UDim2.new(Temp.Size.X.Scale, Temp.Size.X.Offset, Temp.Size.Y.Scale, Temp.Size.Y.Offset + 10)
+		Temp.Text = txt
+	until Temp.TextFits 
+end
+
+	BUD = BUD + UDim2.new(0, 0, 0, Temp.Size.Y.Offset)
+	
+	table.insert(loggedTable, Temp)
+	
+	local totSize = getTotalSize()
+	
+	if totSize.Y.Offset >= Scroll.CanvasSize.Y.Offset then Scroll.CanvasSize = UDim2.new(totSize.X.Scale, totSize.X.Offset, totSize.Y.Scale, totSize.Y.Offset + 100)
+	Scroll.CanvasPosition = Scroll.CanvasPosition + Vector2.new(0, totSize.Y.Offset) 
+	end
+	
+	return Temp
+end
+
+local ChatData = ""
+
+local function SaveToFile()
+	local t = os.date("*t")
+	local dateDat = t['hour']..' '..t['min']..' '..t['sec']..' '..t['day']..'.'..t['month']..'.'..t['year']
+	
+	ChatData = ""
+	
+	for i, v in pairs(Scroll:GetChildren()) do
+		ChatData = ChatData..v.TimeVal.Value..' '..v.Text..'\n'
+	end
+	
+	writefile('ChatLogs '..dateDat..'.txt', ChatData)
+end
+
+
+local function Clear()
+	loggedTable = {}
+	ChatData = ""
+	Scroll.CanvasPosition = Vector2.new(0, 0)
+	for i, v in pairs(Scroll:GetChildren()) do
+		v:Destroy()
+	end
+	Scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
+	BUD = UDim2.new(0, 0, 0, 0)
+end
+
+local LogPlr = function(plr)
+			plr.Chatted:connect(function(msg)
+				
+			local t = os.date("*t")
+			local dateDat = t['hour']..':'..t['min']..':'..t['sec']
+	
+			if string.len(msg) >= 1000 then return nil end
+			if string.lower(msg) == 'clear' and plr == game:service('Players').LocalPlayer then Clear() return nil end
+			if string.lower(msg) == 'savetofile' and plr == game:service('Players').LocalPlayer then SaveToFile() return nil end
+			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then GenLog(plr.Name..': '..msg, Color3.new(255, 0, 0), dateDat) else
+			GenLog(plr.Name..': '..msg, Color3.new(255, 255, 255), dateDat)
+			end
+	end)
+end
+
+for i, v in pairs(game.Players:GetChildren()) do
+	LogPlr(v)
+end
+
+game.Players.PlayerAdded:connect(function(plr)
+	LogPlr(plr)
 end)
 
-Line.Name = "Line"
-Line.Parent = WhitelistModule
-Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Line.BorderSizePixel = 0
-Line.Position = UDim2.new(0.272624433, 0, 0.415409505, 0)
-Line.Size = UDim2.new(0, 100, 0, 2)
 
-Blackout.Name = "Blackout"
-Blackout.Parent = ChatSystemFunctions
-Blackout.BackgroundColor3 = Color3.fromRGB(44, 44, 44)
-Blackout.BackgroundTransparency = 1.000
-Blackout.BorderSizePixel = 0
-Blackout.ClipsDescendants = true
-Blackout.Position = UDim2.new(-0.0790000036, 0, 0.414999992, 0)
-Blackout.Size = UDim2.new(0, 2000, 0, 0)
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Th12353/hoootototott/main/venyx"))()
+local venyx = library.new("Project - OVERLORD", 5013109572)
+local themes = {
+	Background = Color3.fromRGB(24, 24, 24),
+	Glow = Color3.fromRGB(0, 0, 0),
+	Accent = Color3.fromRGB(10, 10, 10),
+	LightContrast = Color3.fromRGB(20, 20, 20),
+	DarkContrast = Color3.fromRGB(14, 14, 14),
+	TextColor = Color3.fromRGB(255, 255, 255)
+}
 
-Title_2.Name = "Title"
-Title_2.Parent = Blackout
-Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title_2.BackgroundTransparency = 1.000
-Title_2.BorderSizePixel = 0
-Title_2.Position = UDim2.new(0.449500024, 0, -0.0625, 0)
-Title_2.Size = UDim2.new(0, 200, 0, 50)
-Title_2.Font = Enum.Font.SourceSans
-Title_2.Text = ""
-Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_2.TextSize = 25.000
-Title_2.TextTransparency = 1.000
 
-Line_2.Name = "Line"
-Line_2.Parent = Blackout
-Line_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Line_2.BackgroundTransparency = 1.000
-Line_2.BorderSizePixel = 0
-Line_2.Position = UDim2.new(0.467000008, 0, 0.206944361, 0)
-Line_2.Size = UDim2.new(0, 129, 0, 1)
 
-Alert.Name = "Alert"
-Alert.Parent = Blackout
-Alert.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Alert.BackgroundTransparency = 1.000
-Alert.Position = UDim2.new(0.335000008, 0, 0.340000004, 0)
-Alert.Size = UDim2.new(0, 470, 0, 60)
-Alert.Font = Enum.Font.SourceSans
-Alert.Text = ""
-Alert.TextColor3 = Color3.fromRGB(255, 255, 255)
-Alert.TextSize = 46.000
-Alert.TextTransparency = 1.000
-Alert.TextXAlignment = Enum.TextXAlignment.Left
 
-Outline.Name = "Outline"
-Outline.Parent = Blackout
-Outline.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-Outline.BackgroundTransparency = 1.000
-Outline.BorderSizePixel = 0
-Outline.Position = UDim2.new(-0.000609523035, 0, 0.842193305, 0)
-Outline.Size = UDim2.new(0, 2000, 0, 22)
-Outline.Font = Enum.Font.SourceSans
-Outline.Text = ""
-Outline.TextColor3 = Color3.fromRGB(0, 0, 0)
-Outline.TextSize = 14.000
+local speedbind = _G.Speed
+local clipbind = _G.Noclip
+local togglebind = _G.Toggle
 
-_Outline.Name = "_Outline"
-_Outline.Parent = Blackout
-_Outline.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-_Outline.BackgroundTransparency = 1.000
-_Outline.BorderSizePixel = 0
-_Outline.Position = UDim2.new(-0.000609523035, 0, -0.00502891885, 0)
-_Outline.Size = UDim2.new(0, 2000, 0, 35)
-_Outline.ZIndex = 0
-_Outline.Font = Enum.Font.SourceSans
-_Outline.Text = ""
-_Outline.TextColor3 = Color3.fromRGB(0, 0, 0)
-_Outline.TextSize = 14.000
+plr = game.Players.LocalPlayer
+mouse = plr:GetMouse()
+mouse.KeyDown:connect(function(key)
+if key == togglebind then
+venyx:toggle()
+end
+end)
+
+local Transportation = venyx:addPage("Movement", 5012544693)
+local TransportationSection = Transportation:addSection("Buttons:")
+local TransportationSection2 = Transportation:addSection("Toggles:")
+local TransportationSection3 = Transportation:addSection("Sliders:")
+
+TransportationSection:addButton("Random Teleport", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SpecialRegions.Anomaly2.CFrame
+end)
+
+TransportationSection:addButton("Open Lab Door", function()
+OpenDoor = game.Workspace.Gate.Buttons.Open.ClickDetector
+fireclickdetector(OpenDoor)
+end)
+
+TransportationSection:addButton("Noclip ["..clipbind.."]", function()
+	noclip = false
+	game:GetService('RunService').Stepped:connect(function()
+		if noclip then
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+		end
+	end)
+	plr = game.Players.LocalPlayer
+	mouse = plr:GetMouse()
+	mouse.KeyDown:connect(function(key)
+		if key == clipbind then
+			noclip = not noclip
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+		end
+	end)
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "Welcome to IsleGUI noclip";
+		Text = "Press ".. clipbind.. " to noclip";
+		Icon = "";
+		Duration = 5
+	})
+end)
+
+TransportationSection2:addToggle("Infinite Jump", nil, function(state)
+	InfiniteJumpEnabled = (state)
+	game:GetService("UserInputService").JumpRequest:connect(function()
+		if InfiniteJumpEnabled then
+			game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+		end
+	end)
+	
+end)
+
+TransportationSection2:addToggle("Max Slope Angle", nil, function(state)
+	SlopeAngleEnabled = (state)
+		while SlopeAngleEnabled do
+		    wait(.1)
+			game.Players.LocalPlayer.Character.Humanoid.MaxSlopeAngle = 89.9
+		end
+end)
+	
+
+
+TransportationSection3:addSlider("Walkspeed ["..speedbind.."]", 16, 16, 100, function(value)
+
+
+	down = false
+	velocity = Instance.new("BodyVelocity")
+	velocity.maxForce = Vector3.new(100000, 0, 100000)
+	local speed = (value)
+	gyro = Instance.new("BodyGyro")
+	gyro.maxTorque = Vector3.new(100000, 0, 100000)
+	local hum = game.Players.LocalPlayer.Character.Humanoid
+	function onButton1Down(mouse)
+		down = true
+		velocity.Parent = game.Players.LocalPlayer.Character.UpperTorso
+		velocity.velocity = (hum.MoveDirection) * speed
+		gyro.Parent = game.Players.LocalPlayer.Character.UpperTorso
+		while down do
+			if not down then
+				break
+			end
+			velocity.velocity = (hum.MoveDirection) * speed
+			local refpos = gyro.Parent.Position + (gyro.Parent.Position - workspace.CurrentCamera.CoordinateFrame.p).unit * 5
+			gyro.cframe = CFrame.new(gyro.Parent.Position, Vector3.new(refpos.x, gyro.Parent.Position.y, refpos.z))
+			wait(0.1)
+		end
+	end
+	function onButton1Up(mouse)
+		velocity.Parent = nil
+		gyro.Parent = nil
+		down = false
+	end
+	function onSelected(mouse)
+		mouse.KeyDown:connect(function(k)
+			if k:lower() == speedbind then
+				onButton1Down(mouse)
+			end
+		end)
+		mouse.KeyUp:connect(function(k)
+			if k:lower() == speedbind then
+				onButton1Up(mouse)
+			end
+		end)
+	end
+	onSelected(game.Players.LocalPlayer:GetMouse())
+end)
+
+
+
+
+
+local Combat = venyx:addPage("Combat", 5012544693)
+local CombatSection3 = Combat:addSection("Buttons:")
+local CombatSection2 = Combat:addSection("Toggles:")
+
+CombatSection3:addButton("Aimbot", function()
+    getgenv().AimPart = "HumanoidRootPart" -- For R15 Games: {UpperTorso, LowerTorso, HumanoidRootPart, Head} | For R6 Games: {Head, Torso, HumanoidRootPart}
+getgenv().AimlockToggleKey = "Y" -- Toggles Aimbot On/Off 
+getgenv().AimRadius = 50768678679 -- How far away from someones character you want to lock on at
+getgenv().ThirdPerson = true -- Locking onto someone in your Third Person POV
+getgenv().FirstPerson = true -- Locking onto someone in your First Person POV
+getgenv().TeamCheck = false -- Check if Target is on your Team (True means it wont lock onto your teamates, false is vice versa) (Set it to false if there are no teams)
+getgenv().PredictMovement = true -- Predicts if they are moving in fast velocity (like jumping) so the aimbot will go a bit faster to match their speed 
+getgenv().PredictionVelocity = 10 -- The speed of the PredictMovement feature 
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/zxciaz/Universal-Scripts/main/Aimbot", true))()
+end)
+CombatSection3:addButton("Y to enable/disable, hold right click to use.", function()
+    end)
+
+CombatSection2:addToggle("Teleport on damage", nil, function(state)
+TPDMGEnabled = (state)
+local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+local OldHealth = Humanoid.Health
+while TPDMGEnabled do
+    wait(.67)
+Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
+if Humanoid.Health < OldHealth then
+    if TPDMGEnabled then
+    
+
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SpecialRegions.Anomaly2.CFrame
+            OldHealth = Humanoid.Health
+    end
+        end
+            end)
+        end
+end)
+CombatSection2:addToggle("No gun slow", nil, function(state)
+    noslow = (state)
+    while noslow do
+        wait(.41)
+    if noslow == true then
+        if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed < 16 then
+          game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        end
+    end
+  end
+        
+    
+    end)
+
+local Sight = venyx:addPage("Vision", 5012544693)
+local SightSection = Sight:addSection("Buttons:")
+local SightSection2 = Sight:addSection("Toggles:")
+
+SightSection:addButton("Zoom Distance", function()
+    game.Players.LocalPlayer.CameraMaxZoomDistance = 1000000000000
+end)
+
+SightSection:addButton("Fullbright", function()
+    local s = Instance.new("PointLight", game.Players.LocalPlayer.Character.Head)
+s.Brightness = .3
+s.Range = 100
+
+game.Lighting.Changed:connect(function()
+game.Lighting.FogEnd = 9999
+game.Lighting.Brightness = 2
+game.Lighting.ColorCorrection.Brightness = 0.1
+game.Lighting.ColorCorrection.Saturation = 0.1
+game.Lighting.Bloom.Intensity = 0.1
+end)
+end)
+
+SightSection:addButton("Anti Blur", function()
+    while true do
+        wait(.33)
+    if game.Lighting:FindFirstChild("Blur") then
+			 game.Lighting:WaitForChild("Blur")
+			game.Lighting.Blur:Destroy()
+    end
+end
+	end)
+    
+    SightSection:addButton("Anti Blackout", function()
+    while true do
+        wait(.33)
+    game.Players.LocalPlayer.Character.Blackout.Value = false
+    end
+end)
+	
+    
+
+    
+
+SightSection:addButton("ESP", function()
+local plr = game.Players.LocalPlayer
+local camera = game.Workspace.CurrentCamera
+
+---Statistics & Item ESP
+
+local itemA = "none"
+local itemB = "none"
+local itemC = "none"
+
+local ActiveItem = "none"
+
+for i, v in pairs(game.Players:GetChildren()) do
+    
+    local NameMarker = Instance.new("BillboardGui")
+    local PlayerName = Instance.new("TextLabel")
+    local PlayerInv = Instance.new("TextLabel")
+    local targetC = v.Name
+    
+    NameMarker.Name = "NameMarker"
+    NameMarker.Parent = game.Workspace[targetC].Head
+    NameMarker.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    NameMarker.Active = true
+    NameMarker.AlwaysOnTop = true
+    NameMarker.LightInfluence = 1.000
+    NameMarker.Size = UDim2.new(0, 350, 0, 100)
+    
+    PlayerName.Name = "PlayerName"
+    PlayerName.Parent = NameMarker
+    PlayerName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerName.BackgroundTransparency = 1.000
+    PlayerName.BorderSizePixel = 2
+    PlayerName.Size = UDim2.new(0, 350, 0, 50)
+    PlayerName.Font = Enum.Font.SourceSans
+    PlayerName.TextColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerName.Text = v.Name.." | Kills: ".. game.Workspace.GameState.Statistics[v.Name]["Players Killed"].Value.. " | Health: ".. v.Character.Humanoid.Health
+    PlayerName.TextSize = 25.000
+    PlayerName.TextStrokeTransparency = 0.500
+
+    PlayerInv.Name = "PlayerInv"
+    PlayerInv.Parent = NameMarker
+    PlayerInv.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerInv.BackgroundTransparency = 1
+    PlayerInv.BorderSizePixel = 2
+    PlayerInv.Size = UDim2.new(0, 350, 0, 2)
+    PlayerInv.Font = Enum.Font.SourceSans
+    PlayerInv.TextColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerInv.Text = "none | none | none"
+    PlayerInv.TextSize = 25
+    PlayerInv.TextStrokeTransparency = 0.5
+    
+    game:GetService("RunService").RenderStepped:Connect(function()
+        
+
+
+        for i, v in pairs(game.Workspace[v.Name]:GetDescendants()) do
+            if v:IsA("Tool") then
+                ActiveItem = v.Name
+            end
+        end
+
+        PlayerName.Text = v.Name.." | Kills: ".. game.Workspace.GameState.Statistics[v.Name]["Players Killed"].Value.." | Holding: ".. ActiveItem.." | Health: ".. v.Character.Humanoid.Health
+
+        if game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value > 0 and game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value < 2 then
+            PlayerName.TextColor3 = Color3.new(255, 157, 0)
+            PlayerInv.TextColor3 = Color3.new(255, 157, 0)
+        elseif game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value > 1 then
+            PlayerName.TextColor3 = Color3.new(255, 0, 0)
+            PlayerInv.TextColor3 = Color3.new(255, 0, 0)
+        elseif game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value < 1 then
+         PlayerName.TextColor3 = Color3.new(255, 255, 255)
+        PlayerInv.TextColor3 = Color3.new(255, 255, 255)
+        end
+
+            for i, v in pairs(v.Backpack:GetChildren()) do
+                if i == 1 then
+                    itemA = v.Name
+                end
+    
+                if i == 2 then
+                    itemB = v.Name
+                end
+    
+                if i == 3 then
+                    itemC = v.Name
+                end
+            end
+
+            if v.Backpack:FindFirstChild(itemA) then
+                print("A")
+            else    
+                itemA = "none"
+            end
+                
+            if v.Backpack:FindFirstChild(itemB) then
+                print("B")
+            else    
+                itemB = "none"
+            end
+                
+            if v.Backpack:FindFirstChild(itemC) then
+                print("C")
+            else
+                itemC = "none"
+            end
+            
+            if v.Backpack:FindFirstChild(ActiveItem) then
+                print("D")
+            else    
+                ActiveItem = "none"
+            end
+    
+            PlayerInv.Text = itemA.. " | ".. itemB.. " | ".. itemC
+
+        end)
+
+    end
+
+
+
+
+
+
+---game.Workspace[plr.Name].Head.NameMarker:Destroy()
+
+_G.options = {
+     ["Hunters"] = true,
+     ["Traps"] = true,
+     ["Items"] = true,
+     ["Threats"] = true, -- Serpent, Turrets, etc.
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Th12353/fghdsgsfhhsjh/main/yeok", true))()
+
+_G.ON = true
+while true do
+wait(1)
+if _G.ON == true then
+if game.Workspace.AIHunter.Helicopter.Body.Helicopter.Playing == true then
+
+if game.Workspace.AIHunter.Helicopter.Body:FindFirstChild("BillboardGui") then
+    
+else
+
+                    local b1 = Instance.new("BillboardGui")
+					local t1 = Instance.new("TextLabel")
+					BillboardGui = b1
+					TextLabel = t1
+					BillboardGui.Parent = game.Workspace.AIHunter.Helicopter.Body
+					BillboardGui.AlwaysOnTop = true
+					BillboardGui.LightInfluence = 1
+					BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+					BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+					TextLabel.Parent = BillboardGui
+					TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+					TextLabel.BackgroundTransparency = 1
+					TextLabel.Size = UDim2.new(1, 0, 1, 0)
+					TextLabel.Text = "Helicopter"
+					TextLabel.TextColor3 = Color3.new(1, 0, 0)
+					TextLabel.TextScaled = true
+					if game.Workspace.AIHunter.Helicopter.Body:FindFirstChild("BillboardGui") and game.Workspace.AIHunter.Helicopter.Body.Helicopter.Playing == false then
+			        
+			game.Workspace.AIHunter.Helicopter.Body.BillboardGui:Destroy()
+			end
+			end		
+    end
+end
+end			
+end)
+
+---toggles
+
+
+
+SightSection2:addToggle("Trees", nil, function(state)
+    Treesa = (state)
+local nocollidetreefolder = game.Workspace.NoCollideTrees
+for i, v in pairs(game.Workspace.NoCollideTrees:GetChildren()) do
+for i, v in pairs(v:GetChildren()) do
+    if Treesa == false and v.Transparency == 1 then
+        v.Transparency = 0.12
+    elseif Treesa == true and v.Transparency < 1 then    
+  v.Transparency = 1
+  end
+end
+end
+    
+end)
+
+local Trolling = venyx:addPage("Trolling", 5012544693)
+local TrollingSection = Trolling:addSection("Buttons:")
+local TrollingSection2 = Trolling:addSection("Toggles:")
+
+---Buttons
+
+TrollingSection:addButton("Orbital Strike", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1584.68, -10.015, 986.675)
+    wait(2)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(701.994, 31.072, -1438.36)
+    wait(3)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2252.09, 1.17687, -777.851)
+    wait(4)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-360.747, -39.492, 1169.68)
+    wait(5)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-562.794, 189.13, -1225.34)
+    wait(.1)
+    end)
+
+---toggles
+
+TrollingSection2:addToggle("Sleep", nil, function(state)
+	Sleeping = (state)
+		if Sleeping then
+	    game.Players.LocalPlayer.Character.SleepMode.Value = true
+        game.Players.LocalPlayer.PlayerGui.Game.Sleep.Visible = false
+		end
+end)
+
+TrollingSection2:addToggle("Scramble lab door", nil, function(state)
+	Scramble = (state)
+		while Scramble do
+		    wait(.1)
+			local f = game.Workspace.Gate.Buttons["5"].ClickDetector
+            local m = game.Workspace.Gate.Buttons["7"].ClickDetector
+            fireclickdetector(f)
+            fireclickdetector(m)
+            
+			end
+		end)
+
+local Misc = venyx:addPage("Miscellaneous", 5012544693)
+local MiscSection = Misc:addSection("Buttons:")
+local MiscSection2 = Misc:addSection("Toggles:")
+
+MiscSection:addButton("Mercs shot player alert", function()
+    while true do
+    wait(.55)
+for i, v in pairs(game.Workspace.AIHunter:GetChildren()) do
+    for i, v in pairs(v:GetChildren()) do
+        if v.Name == "@Alerts" then
+            for i, v in pairs(v:GetChildren()) do
+                local string = v.Name
+                 if string:match("hit") then
+                    stringys2= string
+                    local Message = stringys2
+                    local SplitMessage = string.split(Message, "hit")
+                    local Value1 = SplitMessage[1]
+                    local Message2 = Value1
+                    local SplitMessage2 = string.split(Message, " ")
+                    local Value2 = SplitMessage[2]
+
+                     local Isle = {}
+function Isle:AddNotification(Text, R, G, B)
+if game.PlaceId == 3431407618 then
+local alert = Instance.new('Color3Value')
+alert.Name = Text
+alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
+alert.Value = Color3.fromRGB(255, 255, 255)
+for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Game.Alert:GetChildren()) do
+    if v.Text == alert.Name then
+        v.TextColor3 = Color3.fromRGB(R, G, B)
+end
+end
+elseif game.PlaceId == 3095204897 then
+local alert = Instance.new('Color3Value')
+alert.Name = Text
+alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
+alert.Value = Color3.fromRGB(255, 255, 255)
+for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Alert.Alert:GetChildren()) do
+    if v.Text == alert.Name then
+        v.TextColor3 = Color3.fromRGB(R, G, B)
+end
+end
+end
+end
+
+
+Isle:AddNotification("The merc's have shot".. Value2, 255, 0, 0)
+v:Destroy()
+                     end
+                end
+            end
+    end
+    end
+
+end
+end)
+MiscSection:addButton("Player died alert", function()
+    onq = true
+while onq do
+    wait(.66)
+    for i, v in pairs(game.Players:GetChildren()) do
+        if v.Character.Humanoid.Health < 1 then
+            local Isle = {}
+function Isle:AddNotification(Text, R, G, B)
+if game.PlaceId == 3431407618 then
+local alert = Instance.new('Color3Value')
+alert.Name = Text
+alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
+alert.Value = Color3.fromRGB(255, 255, 255)
+for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Game.Alert:GetChildren()) do
+    if v.Text == alert.Name then
+        v.TextColor3 = Color3.fromRGB(R, G, B)
+end
+end
+elseif game.PlaceId == 3095204897 then
+local alert = Instance.new('Color3Value')
+alert.Name = Text
+alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
+alert.Value = Color3.fromRGB(255, 255, 255)
+for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Alert.Alert:GetChildren()) do
+    if v.Text == alert.Name then
+        v.TextColor3 = Color3.fromRGB(R, G, B)
+end
+end
+end
+end
+
+Isle:AddNotification(v.Name.. " Has died", 255, 0, 0)
+onq = false
+wait(3)
+onq = true
+
+            end
+end
+end
+end)
+
+MiscSection:addButton("Infinite Oxygen", function()
+    local targetplayer = game.Players.LocalPlayer.Name
+    game.Workspace[targetplayer].Underwater:Destroy()
+end)
+
+MiscSection:addButton("Anti Stan", function()
+game.Workspace.Monster.A.Humanoid.Health = 0
+game.Workspace.Monster.A.Humanoid.BreakJointsOnDeath = true
+end)
+
+
+
+MiscSection:addButton("Remove corruption", function()
+    game:GetService("Players").LocalPlayer.Character["#Corrupt"].Handle.Trail:Destroy()
+            game:GetService("Players").LocalPlayer.Character["#Corrupt"].Handle.Trail2:Destroy()
+            game:GetService("Players").LocalPlayer.Character["#Corrupt"].Handle.A:Destroy()
+            game:GetService("Players").LocalPlayer.Character["#Corrupt"].Handle.B:Destroy()
+    end)
+
+MiscSection:addButton("Portal code", function()
+stringys = game.Workspace.ObservatoryComputer.Monitor.SurfaceGui.Email["6"].Message2.Text
+local Message = stringys
+local SplitMessage = string.split(Message, "recorded")
+local Value1 = SplitMessage[1]
+local Message2 = Value1
+local SplitMessage2 = string.split(Message, "as")
+local Value2 = SplitMessage[2]
+
+Isle:Notify(Value2, 255, 255, 255)
+end)
+
+MiscSection:addButton("IY", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+end)
+
+
+
+local page3 = venyx:addPage("Teleports", 5012544693)
+local sectiones7 = page3:addSection("Items TP")
+local sectiones9 = page3:addSection("Collection TP")
+local sectiones8 = page3:addSection("Place TP")
+for i, v in pairs(workspace.Tools:GetChildren()) do
+	if v:FindFirstChild("Handle") then
+		sectiones7:addButton(v.Name, function()
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(476.151154, 146.17453, -1193.2063, -0.797012746, -2.82050046e-08, -0.603962481, -4.69145611e-08, 1, 1.5210377e-08, 0.603962481, 4.04574969e-08, -0.797012746)
+		end)
+	end
+end
+
+for i, v in pairs(workspace.Collectibles:GetChildren()) do
+     sectiones9:addButton(v.Name, function()
+        if v:IsA("MeshPart") or v:IsA("Part") or v:IsA("UnionOperation") then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+        elseif v:IsA("Model") then
+            for i, v in pairs(v:GetChildren()) do
+                if v:IsA("Part") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                end
+            end
+        end
+    end)
+end
+
+sectiones8:addButton("Ship Teleport", function()
+    if game.Workspace.Weather.Day.Value == 1 then
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(264.43515, 20.2382774, 31333.4922, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+	else
+	game:GetService('TestService'):Message("Ship Teleport works only on Day [1]")
+	end
+end)
+sectiones8:addButton("Visit the lotus", function()
+game:GetService("TeleportService"):Teleport(4514535987, LocalPlayer) 
+end)
+sectiones8:addButton("Teleport to the truth", function()
+ game:GetService("TeleportService"):Teleport(4529197908, LocalPlayer)
+end)
+
+sectiones8:addButton("Watchtower", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-655.500244, 138.209625, -289.795654))
+end)
+sectiones8:addButton("Warehouses", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-944.766296, 35.8019257, -537.485596))
+end)
+sectiones8:addButton("Lighthouse", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-1535.31775, 116.969376, -213.45253))
+end)
+sectiones8:addButton("Airplane", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-1999.916787, 196.773636, -464.065308))
+end)
+sectiones8:addButton("Cargo ship", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-1794.09729, 8.50286007, 22.2027988))
+end)
+sectiones8:addButton("Mineshaft", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-1827.13843, 130.756912, -1099.62585))
+end)
+sectiones8:addButton("Docks", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-2029.91162, 4.63455868, -1556.79041))
+end)
+sectiones8:addButton("Lab", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-1574.19995, -103.854485, -1472.58997))
+end)
+sectiones8:addButton("Glass Container (Lab)", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-1771.3197, -198.802612, -1308.25012))
+end)
+sectiones8:addButton("Generators", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(487.924194, -7.1500001, -492.964355))
+end)
+sectiones8:addButton("Observatory", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(425.643005, 126.679382, -1215.2312))
+end)
+sectiones8:addButton("Crashed Airplane", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-611.773865, 276.7677, -1750.44043))
+end)
+sectiones8:addButton("Radio Tower", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-1056.34106, 504.643524, -1416.52991))
+end)
+sectiones8:addButton("Drone Cave", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-114.806534, 244.37413, -2816.78638))
+end)
+
+
+
+local aipage = venyx:addPage("Pathfinding", 5012544693)
+local aipage1 = aipage:addSection("Items")
+for i, v in pairs(workspace.Tools:GetChildren()) do
+	if v:FindFirstChild("Handle") then
+		aipage1:addButton(v.Name, function()
+local human = game.Players.LocalPlayer.Character.Humanoid
+local Body = game.Players.LocalPlayer.Character.HumanoidRootPart
+local Destination = v.Handle
+local path = game:GetService("PathfindingService"):CreatePath()
+path:ComputeAsync(Body.Position, Destination.Position)
+if path.Status == Enum.PathStatus.Success then
+   local wayPoints = path:GetWaypoints()
+   for i = 1, #wayPoints do
+       local point = wayPoints[i]
+       human:MoveTo(point.Position)
+       local success = human.MoveToFinished:Wait()
+       if point.Action == Enum.PathWaypointAction.Jump then
+           human.WalkSpeed = 0
+           wait(0.2)
+           human.WalkSpeed = 16
+           human.Jump = true
+       end
+       if not success then
+           print("trying again")
+           human.Jump = true
+           human:MoveTo(point.Position)
+           if not human.MoveToFinished:Wait() then
+               break
+           end
+       end
+   end
+end
+		end)
+	end
+end
+
+
+
+while true do
+    wait(.1)
+    while Sleeping == false do
+    game.Players.LocalPlayer.Character.SleepMode.Value = false
+    end
+    end
+
+end
+
+
+while true do
+    wait(.56)
+    while BlackOutFalse == false do
+    game.Players.LocalPlayer.Character.Blackout.Value = true
+    end
+end
+
+
