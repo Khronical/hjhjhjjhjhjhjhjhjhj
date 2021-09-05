@@ -1,4 +1,0 @@
-local keys = {
-    AliveGuySucks = true
-}
-return keys
