@@ -1,4 +1,0 @@
-local Blacklist = {
-    '47.157.199.196'
-}
-return Blacklist
