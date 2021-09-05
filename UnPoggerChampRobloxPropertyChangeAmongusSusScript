@@ -5,10 +5,23 @@
 
 ]]
 
+-------------------------------------
+
 _G.Speed = "q"
 _G.Noclip = "v"
 _G.Toggle = "k"
 
+_G.InvVis = false
+_G.MainVis = false
+_G.BoxVis = false
+
+_G.StanVis = false
+_G.MainESPVis = false
+
+_G.Looped = false
+
+_G.TT = true
+_G.FF = false
 
 if game.PlaceId == 3431407618 then
 
@@ -369,19 +382,18 @@ CombatSection2:addToggle("No gun slow", nil, function(state)
     noslow = (state)
     while noslow do
         wait(.41)
-    if noslow == true then
-        if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed < 16 then
-          game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        if noslow == true then
+            if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed < 16 then
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+            end
         end
     end
-  end
-        
-    
-    end)
+end)
 
 local Sight = venyx:addPage("Vision", 5012544693)
 local SightSection = Sight:addSection("Buttons:")
 local SightSection2 = Sight:addSection("Toggles:")
+local SightSection3 = Sight:addSection("ESP Options:")
 
 SightSection:addButton("Zoom Distance", function()
     game.Players.LocalPlayer.CameraMaxZoomDistance = 1000000000000
@@ -389,225 +401,173 @@ end)
 
 SightSection:addButton("Fullbright", function()
     local s = Instance.new("PointLight", game.Players.LocalPlayer.Character.Head)
-s.Brightness = .3
-s.Range = 100
+    s.Brightness = 0.3
+    s.Range = 100
 
-game.Lighting.Changed:connect(function()
-game.Lighting.FogEnd = 9999
-game.Lighting.Brightness = 2
-game.Lighting.ColorCorrection.Brightness = 0.1
-game.Lighting.ColorCorrection.Saturation = 0.1
-game.Lighting.Bloom.Intensity = 0.1
-end)
+    game.Lighting.Changed:connect(function()
+        game.Lighting.FogEnd = 9999
+        game.Lighting.Brightness = 2
+        game.Lighting.ColorCorrection.Brightness = 0.1
+        game.Lighting.ColorCorrection.Saturation = 0.1
+        game.Lighting.Bloom.Intensity = 0.1
+    end)
 end)
 
 SightSection:addButton("Anti Blur", function()
-    while true do
-        wait(.33)
-    if game.Lighting:FindFirstChild("Blur") then
-			 game.Lighting:WaitForChild("Blur")
-			game.Lighting.Blur:Destroy()
-    end
-end
-	end)
+    game:GetService("Lighting").Blur.Enabled = false
+end)
     
-    SightSection:addButton("Anti Blackout", function()
+SightSection:addButton("Anti Blackout", function()
     while true do
         wait(.33)
     game.Players.LocalPlayer.Character.Blackout.Value = false
     end
 end)
-	
-    
 
-    
-
-SightSection:addButton("ESP", function()
-local plr = game.Players.LocalPlayer
-local camera = game.Workspace.CurrentCamera
-
----Statistics & Item ESP
-
-local itemA = "none"
-local itemB = "none"
-local itemC = "none"
-
-local ActiveItem = "none"
-
-for i, v in pairs(game.Players:GetChildren()) do
-    
-    local NameMarker = Instance.new("BillboardGui")
-    local PlayerName = Instance.new("TextLabel")
-    local PlayerInv = Instance.new("TextLabel")
-    local targetC = v.Name
-    
-    NameMarker.Name = "NameMarker"
-    NameMarker.Parent = game.Workspace[targetC].Head
-    NameMarker.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    NameMarker.Active = true
-    NameMarker.AlwaysOnTop = true
-    NameMarker.LightInfluence = 1.000
-    NameMarker.Size = UDim2.new(0, 350, 0, 100)
-    
-    PlayerName.Name = "PlayerName"
-    PlayerName.Parent = NameMarker
-    PlayerName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    PlayerName.BackgroundTransparency = 1.000
-    PlayerName.BorderSizePixel = 2
-    PlayerName.Size = UDim2.new(0, 350, 0, 50)
-    PlayerName.Font = Enum.Font.SourceSans
-    PlayerName.TextColor3 = Color3.fromRGB(255, 255, 255)
-    PlayerName.Text = v.Name.." | Kills: ".. game.Workspace.GameState.Statistics[v.Name]["Players Killed"].Value.. " | Health: ".. v.Character.Humanoid.Health
-    PlayerName.TextSize = 25.000
-    PlayerName.TextStrokeTransparency = 0.500
-
-    PlayerInv.Name = "PlayerInv"
-    PlayerInv.Parent = NameMarker
-    PlayerInv.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    PlayerInv.BackgroundTransparency = 1
-    PlayerInv.BorderSizePixel = 2
-    PlayerInv.Size = UDim2.new(0, 350, 0, 2)
-    PlayerInv.Font = Enum.Font.SourceSans
-    PlayerInv.TextColor3 = Color3.fromRGB(255, 255, 255)
-    PlayerInv.Text = "none | none | none"
-    PlayerInv.TextSize = 25
-    PlayerInv.TextStrokeTransparency = 0.5
-    
-    game:GetService("RunService").RenderStepped:Connect(function()
-        
-
-
-        for i, v in pairs(game.Workspace[v.Name]:GetDescendants()) do
-            if v:IsA("Tool") then
-                ActiveItem = v.Name
-            end
-        end
-
-        PlayerName.Text = v.Name.." | Kills: ".. game.Workspace.GameState.Statistics[v.Name]["Players Killed"].Value.." | Holding: ".. ActiveItem.." | Health: ".. v.Character.Humanoid.Health
-
-        if game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value > 0 and game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value < 2 then
-            PlayerName.TextColor3 = Color3.new(255, 157, 0)
-            PlayerInv.TextColor3 = Color3.new(255, 157, 0)
-        elseif game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value > 1 then
-            PlayerName.TextColor3 = Color3.new(255, 0, 0)
-            PlayerInv.TextColor3 = Color3.new(255, 0, 0)
-        elseif game.Workspace.GameState.Statistics[targetC]["Players Killed"].Value < 1 then
-         PlayerName.TextColor3 = Color3.new(255, 255, 255)
-        PlayerInv.TextColor3 = Color3.new(255, 255, 255)
-        end
-
-            for i, v in pairs(v.Backpack:GetChildren()) do
-                if i == 1 then
-                    itemA = v.Name
-                end
-    
-                if i == 2 then
-                    itemB = v.Name
-                end
-    
-                if i == 3 then
-                    itemC = v.Name
-                end
-            end
-
-            if v.Backpack:FindFirstChild(itemA) then
-                print("A")
-            else    
-                itemA = "none"
-            end
-                
-            if v.Backpack:FindFirstChild(itemB) then
-                print("B")
-            else    
-                itemB = "none"
-            end
-                
-            if v.Backpack:FindFirstChild(itemC) then
-                print("C")
-            else
-                itemC = "none"
-            end
-            
-            if v.Backpack:FindFirstChild(ActiveItem) then
-                print("D")
-            else    
-                ActiveItem = "none"
-            end
-    
-            PlayerInv.Text = itemA.. " | ".. itemB.. " | ".. itemC
-
-        end)
-
-    end
-
-
-
-
-
-
----game.Workspace[plr.Name].Head.NameMarker:Destroy()
-
-_G.options = {
-     ["Hunters"] = true,
-     ["Traps"] = true,
-     ["Items"] = true,
-     ["Threats"] = true, -- Serpent, Turrets, etc.
-}
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Th12353/fghdsgsfhhsjh/main/yeok", true))()
-
-_G.ON = true
-while true do
-wait(1)
-if _G.ON == true then
-if game.Workspace.AIHunter.Helicopter.Body.Helicopter.Playing == true then
-
-if game.Workspace.AIHunter.Helicopter.Body:FindFirstChild("BillboardGui") then
-    
-else
-
-                    local b1 = Instance.new("BillboardGui")
-					local t1 = Instance.new("TextLabel")
-					BillboardGui = b1
-					TextLabel = t1
-					BillboardGui.Parent = game.Workspace.AIHunter.Helicopter.Body
-					BillboardGui.AlwaysOnTop = true
-					BillboardGui.LightInfluence = 1
-					BillboardGui.Size = UDim2.new(0, 50, 0, 50)
-					BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
-					TextLabel.Parent = BillboardGui
-					TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-					TextLabel.BackgroundTransparency = 1
-					TextLabel.Size = UDim2.new(1, 0, 1, 0)
-					TextLabel.Text = "Helicopter"
-					TextLabel.TextColor3 = Color3.new(1, 0, 0)
-					TextLabel.TextScaled = true
-					if game.Workspace.AIHunter.Helicopter.Body:FindFirstChild("BillboardGui") and game.Workspace.AIHunter.Helicopter.Body.Helicopter.Playing == false then
-			        
-			game.Workspace.AIHunter.Helicopter.Body.BillboardGui:Destroy()
-			end
-			end		
-    end
-end
-end			
-end)
-
----toggles
-
-
+--toggles
 
 SightSection2:addToggle("Trees", nil, function(state)
     Treesa = (state)
-local nocollidetreefolder = game.Workspace.NoCollideTrees
-for i, v in pairs(game.Workspace.NoCollideTrees:GetChildren()) do
-for i, v in pairs(v:GetChildren()) do
-    if Treesa == false and v.Transparency == 1 then
-        v.Transparency = 0.12
-    elseif Treesa == true and v.Transparency < 1 then    
-  v.Transparency = 1
-  end
-end
-end
+    local nocollidetreefolder = game.Workspace.NoCollideTrees
+    for i, v in pairs(game.Workspace.NoCollideTrees:GetChildren()) do
+    for i, v in pairs(v:GetChildren()) do
+        if Treesa == false and v.Transparency == 1 then
+            v.Transparency = 0.12
+        elseif Treesa == true and v.Transparency < 1 then    
+    v.Transparency = 1
+    end
+    end
+    end  
+end)
+	
+---ESP Options
+
+SightSection3:addButton("Load ESP", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/PlayerESP"))()
+
+    game.Workspace[plr.Name].Head.NameMarker:Destroy()
+
+    _G.options = {
+        ["Hunters"] = true,
+        ["Traps"] = true,
+        ["Items"] = true,
+        ["Threats"] = true, -- Serpent, Turrets, etc.
+    }
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/yeokk"))()
     
+    _G.ON = false
+    while true do
+        wait(1)
+        if _G.ON == true then
+            if game.Workspace.AIHunter.Helicopter.Body.Helicopter.Playing == true then
+                if game.Workspace.AIHunter.Helicopter.Body:FindFirstChild("BillboardGui") then
+                    
+                else
+                    local b1 = Instance.new("BillboardGui")
+                	local t1 = Instance.new("TextLabel")
+                	BillboardGui = b1
+                	TextLabel = t1
+                	BillboardGui.Parent = game.Workspace.AIHunter.Helicopter.Body
+                    BillboardGui.AlwaysOnTop = true
+                	BillboardGui.LightInfluence = 1
+                	BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+                	BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+                	TextLabel.Parent = BillboardGui
+                	TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+                	TextLabel.BackgroundTransparency = 1
+                	TextLabel.Size = UDim2.new(1, 0, 1, 0)
+                	TextLabel.Text = "Helicopter"
+                	TextLabel.TextColor3 = Color3.new(1, 0, 0)
+                	TextLabel.TextScaled = true
+                    if game.Workspace.AIHunter.Helicopter.Body:FindFirstChild("BillboardGui") and game.Workspace.AIHunter.Helicopter.Body.Helicopter.Playing == false then
+                    	game.Workspace.AIHunter.Helicopter.Body.BillboardGui:Destroy()
+                    end
+                end
+            end
+        end
+    end
+end)    
+
+SightSection3:addToggle("Inventory Display", nil, function(value)
+    if value == true then
+        _G.InvVis = true
+    elseif value == false then
+        _G.InvVis = false
+    end
+end)
+
+SightSection3:addToggle("Main Information Display", nil, function(value)
+    if value == true then
+        _G.MainVis = true
+    elseif value == false then
+        _G.MainVis = false
+    end
+end)
+
+SightSection3:addToggle("Box Display", nil, function(value)
+    if value == true then
+        _G.BoxVis = true
+    elseif value == false then
+        _G.BoxVis = false
+    end
+end)
+
+SightSection3:addToggle("Helicopter Display", nil, function(value)
+    if value == true then
+        _G.ON = true
+    elseif value == false then
+        _G.ON = false
+    end
+end)
+
+SightSection3:addToggle("Stan ESP", nil, function(value)
+    if value == true then
+        _G.StanVis = true
+    elseif value == false then
+        _G.StanVis = false
+    end
+end)
+
+SightSection3:addToggle("Main ESP", nil, function(value)
+    if value == true then
+        _G.MainESPVis = true
+        wait()
+        _G.MainESPVis = false
+    elseif value == false then
+        	if _G.MainESPVis == false then
+        	    if _G.Looped == true then
+                    _G.Looped = false
+            		for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
+            			if v.Name == "BillboardGui" then
+            				v:Destroy()
+            			end
+            		end
+                	for i,v in pairs(game.Workspace:GetDescendants()) do
+            			if v.Name == "StepCrate" then
+            				v:Destroy()
+            			end
+            		end
+            	
+            		for i,v in pairs(workspace:GetChildren()) do 
+            			if v.Name:find("Trap") or v.Name:find("Tripwire") then 
+            				if v:FindFirstChildWhichIsA("BillboardGui") then 
+            					v.BillboardGui:Destroy()
+            				end
+            			end
+            		end
+            		for i,v in pairs(workspace.Tools:GetDescendants()) do 
+            			if v.Name == "BillboardGui" then
+            				v:Destroy()
+            			end
+            		end
+            		for i,v in pairs(workspace.Threats:GetDescendants()) do 
+            			if v.Name == "BillboardGui" then
+            				v:Destroy()
+            			end
+            		end
+            end
+        end
+    end
 end)
 
 local Trolling = venyx:addPage("Trolling", 5012544693)
@@ -672,33 +632,7 @@ for i, v in pairs(game.Workspace.AIHunter:GetChildren()) do
                     local SplitMessage2 = string.split(Message, " ")
                     local Value2 = SplitMessage[2]
 
-                     local Isle = {}
-function Isle:AddNotification(Text, R, G, B)
-if game.PlaceId == 3431407618 then
-local alert = Instance.new('Color3Value')
-alert.Name = Text
-alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
-alert.Value = Color3.fromRGB(255, 255, 255)
-for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Game.Alert:GetChildren()) do
-    if v.Text == alert.Name then
-        v.TextColor3 = Color3.fromRGB(R, G, B)
-end
-end
-elseif game.PlaceId == 3095204897 then
-local alert = Instance.new('Color3Value')
-alert.Name = Text
-alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
-alert.Value = Color3.fromRGB(255, 255, 255)
-for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Alert.Alert:GetChildren()) do
-    if v.Text == alert.Name then
-        v.TextColor3 = Color3.fromRGB(R, G, B)
-end
-end
-end
-end
-
-
-Isle:AddNotification("The merc's have shot".. Value2, 255, 0, 0)
+Isle:Notify("The merc's have shot".. Value2, 255, 0, 0)
 v:Destroy()
                      end
                 end
@@ -715,31 +649,8 @@ while onq do
     for i, v in pairs(game.Players:GetChildren()) do
         if v.Character.Humanoid.Health < 1 then
             local Isle = {}
-function Isle:AddNotification(Text, R, G, B)
-if game.PlaceId == 3431407618 then
-local alert = Instance.new('Color3Value')
-alert.Name = Text
-alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
-alert.Value = Color3.fromRGB(255, 255, 255)
-for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Game.Alert:GetChildren()) do
-    if v.Text == alert.Name then
-        v.TextColor3 = Color3.fromRGB(R, G, B)
-end
-end
-elseif game.PlaceId == 3095204897 then
-local alert = Instance.new('Color3Value')
-alert.Name = Text
-alert.Parent = game.Players.LocalPlayer.Character["@Alerts"]
-alert.Value = Color3.fromRGB(255, 255, 255)
-for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Alert.Alert:GetChildren()) do
-    if v.Text == alert.Name then
-        v.TextColor3 = Color3.fromRGB(R, G, B)
-end
-end
-end
-end
 
-Isle:AddNotification(v.Name.. " Has died", 255, 0, 0)
+Isle:Notify(v.Name.. " Has disappeared...", 255, 0, 0)
 onq = false
 wait(3)
 onq = true
@@ -791,11 +702,9 @@ local sectiones7 = page3:addSection("Items TP")
 local sectiones9 = page3:addSection("Collection TP")
 local sectiones8 = page3:addSection("Place TP")
 for i, v in pairs(workspace.Tools:GetChildren()) do
-	if v:FindFirstChild("Handle") then
-		sectiones7:addButton(v.Name, function()
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(476.151154, 146.17453, -1193.2063, -0.797012746, -2.82050046e-08, -0.603962481, -4.69145611e-08, 1, 1.5210377e-08, 0.603962481, 4.04574969e-08, -0.797012746)
-		end)
-	end
+	sectiones7:addButton(v.Name, function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChild("Handle").CFrame
+	end)
 end
 
 for i, v in pairs(workspace.Collectibles:GetChildren()) do
@@ -813,11 +722,8 @@ for i, v in pairs(workspace.Collectibles:GetChildren()) do
 end
 
 sectiones8:addButton("Ship Teleport", function()
-    if game.Workspace.Weather.Day.Value == 1 then
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(264.43515, 20.2382774, 31333.4922, 0, 0, -1, 0, 1, 0, 1, 0, 0)
-	else
 	game:GetService('TestService'):Message("Ship Teleport works only on Day [1]")
-	end
 end)
 sectiones8:addButton("Visit the lotus", function()
 game:GetService("TeleportService"):Teleport(4514535987, LocalPlayer) 
