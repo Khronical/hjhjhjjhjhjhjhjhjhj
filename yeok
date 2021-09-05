@@ -143,28 +143,6 @@ end
 	end
 end)
 
-	  m.KeyDown:connect(function(k)
-	k = k:lower()
-	if k == "z" then  
-for i, v in ipairs(workspace:GetDescendants()) do
-    if v.Name == "NameMarker" then
-        v.Enabled = true
-end
-end
-end  
-end)
-	    
-	  m.KeyDown:connect(function(k)
-	k = k:lower()
-	if k == "x" then  
-for i, v in ipairs(workspace:GetDescendants()) do
-    if v.Name == "NameMarker" then
-        v.Enabled = false
-end
-end
-end  
-end)
-
 m.KeyDown:connect(function(k)
 	k = k:lower()
 	if k == "n" then
