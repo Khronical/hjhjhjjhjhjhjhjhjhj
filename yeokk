@@ -24,6 +24,7 @@ while true do
     wait()
 	if _G.MainESPVis == true then
         if _G.Looped == false then
+            _G.Looped = true
             if _G.options["Hunters"] then
                 for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
                     if v:IsA("BasePart") and v.Name == "HumanoidRootPart" then
@@ -114,66 +115,28 @@ while true do
                     end
                 end
             end
-        for i,v in pairs(game.Workspace:GetDescendants()) do
-            if v.Parent.Name == "Security" then
-            local BillboardGui = Instance.new("BillboardGui")
-            local TextLabel = Instance.new("TextLabel")
-        
-            BillboardGui.Parent = v.Parent
-            BillboardGui.Name = "StepCrate"
-            BillboardGui.AlwaysOnTop = true
-            BillboardGui.LightInfluence = 1
-            BillboardGui.Size = UDim2.new(0, 50, 0, 50)
-            BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
-        
-            TextLabel.Parent = BillboardGui
-            TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-            TextLabel.BackgroundTransparency = 1
-            TextLabel.Size = UDim2.new(1, 0, 1, 0)
-            TextLabel.Text = v.Parent.Parent["#Bypassable"].Item.Value
-            TextLabel.TextColor3 = Color3.new(1, 1, 0)
-            TextLabel.TextScaled = true
+            for i,v in pairs(game.Workspace:GetDescendants()) do
+                if v.Parent.Name == "Security" then
+                    local BillboardGui = Instance.new("BillboardGui")
+                    local TextLabel = Instance.new("TextLabel")
+                
+                    BillboardGui.Parent = v.Parent
+                    BillboardGui.Name = "StepCrate"
+                    BillboardGui.AlwaysOnTop = true
+                    BillboardGui.LightInfluence = 1
+                    BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+                    BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+                
+                    TextLabel.Parent = BillboardGui
+                    TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+                    TextLabel.BackgroundTransparency = 1
+                    TextLabel.Size = UDim2.new(1, 0, 1, 0)
+                    TextLabel.Text = v.Parent.Parent["#Bypassable"].Item.Value
+                    TextLabel.TextColor3 = Color3.new(1, 1, 0)
+                    TextLabel.TextScaled = true
+                end
             end
         end
-        _G.Looped = true
-        end
-    end
-end
-
-while true do
-	if _G.MainESPVis == false then
-	    if _G.Looped == true then
-    		-- Chest ESP delete
-    		for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
-    			if v.Name == "BillboardGui" then
-    				v:Destroy()
-    			end
-    		end
-        	for i,v in pairs(game.Workspace:GetDescendants()) do
-    			if v.Name == "StepCrate" then
-    				v:Destroy()
-    			end
-    		end
-    	
-    		for i,v in pairs(workspace:GetChildren()) do 
-    			if v.Name:find("Trap") or v.Name:find("Tripwire") then 
-    				if v:FindFirstChildWhichIsA("BillboardGui") then 
-    					v.BillboardGui:Destroy()
-    				end
-    			end
-    		end
-    		for i,v in pairs(workspace.Tools:GetDescendants()) do 
-    			if v.Name == "BillboardGui" then
-    				v:Destroy()
-    			end
-    		end
-    		for i,v in pairs(workspace.Threats:GetDescendants()) do 
-    			if v.Name == "BillboardGui" then
-    				v:Destroy()
-    			end
-    		end
-            _G.Looped = false
-    	end
     end
 end
 
