@@ -22,7 +22,7 @@ end)
 
 while true do
     wait()
-	if _G.MainESP == true then
+	if _G.MainESPVis == true then
 		if _G.options["Hunters"] then
 			for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
 				if v:IsA("BasePart") and v.Name == "HumanoidRootPart" then
@@ -137,7 +137,7 @@ end
 	end
 end)
 
-	if _G.MainESP == false then
+	if _G.MainESPVis == false then
 		-- Chest ESP delete
 		for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
 			if v.Name == "BillboardGui" then
