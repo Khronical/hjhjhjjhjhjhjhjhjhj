@@ -1,6 +1,6 @@
 -- Made by TrashScripterF
 
-_G.Looped
+local Looped = false
 
 assert(getrawmetatable, "Your exploit is not supported!")
 local mt = getrawmetatable(game)
