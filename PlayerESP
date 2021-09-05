@@ -74,10 +74,10 @@
                             Right.Color = Color3.fromRGB(255, 255, 255)
                         end
 
-                        Top.Visible = _G.BoxVis = false
-                        Left.Visible = _G.BoxVis = false
-                        Bottom.Visible = _G.BoxVis = false
-                        Right.Visible = _G.BoxVis = false
+                        Top.Visible = _G.BoxVis
+                        Left.Visible = _G.BoxVis
+                        Bottom.Visible = _G.BoxVis
+                        Right.Visible = _G.BoxVis
                     else 
                         Top.Visible = _G.FF
                         Left.Visible = _G.FF
@@ -166,10 +166,10 @@
                             Right.Color = Color3.fromRGB(255, 255, 255)
                         end
 
-                        Top.Visible = _G.BoxVis = false
-                        Left.Visible = _G.BoxVis = false
-                        Bottom.Visible = _G.BoxVis = false
-                        Right.Visible = _G.BoxVis = false
+                        Top.Visible = _G.BoxVis
+                        Left.Visible = _G.BoxVis
+                        Bottom.Visible = _G.BoxVis
+                        Right.Visible = _G.BoxVis
                     else 
                         Top.Visible = _G.FF
                         Left.Visible = _G.FF
