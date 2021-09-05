@@ -20,15 +20,9 @@ mt.__namecall = newcclosure(function(self,...)
     return old(self,...)
 end)
 
-
-
-
-
-
-local m = game.Players.LocalPlayer:GetMouse()
-m.KeyDown:connect(function(k)
-	k = k:lower()
-	if k == "b" then
+while true do
+    wait()
+	if _G.MainESP == true then
 		if _G.options["Hunters"] then
 			for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
 				if v:IsA("BasePart") and v.Name == "HumanoidRootPart" then
@@ -143,9 +137,7 @@ end
 	end
 end)
 
-m.KeyDown:connect(function(k)
-	k = k:lower()
-	if k == "n" then
+	if _G.MainESP == false then
 		-- Chest ESP delete
 		for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
 			if v.Name == "BillboardGui" then
@@ -177,6 +169,7 @@ m.KeyDown:connect(function(k)
 		end
 	end
 end)
+end
 
 -- Stan NameMarker
 local BillboardGui = Instance.new("BillboardGui")
@@ -199,6 +192,7 @@ TextLabel.Text = "Stan"
 TextLabel.TextColor3 = Color3.new(1, 0, 0)
 TextLabel.TextSize = 50
 TextLabel.TextStrokeTransparency = 0
+TextLabel.Visible = _G.StanVis
 ---{end}---
 
 local AHead = Instance.new("BoxHandleAdornment")
@@ -209,7 +203,7 @@ AHead.Transparency = 0.3
 AHead.Adornee = game.Workspace.Monster.A.Head
 AHead.AlwaysOnTop = true
 AHead.Size = game.Workspace.Monster.A.Head.Size
-AHead.Visible = true
+AHead.Visible = _G.StanVis
 AHead.ZIndex = 10
 
 ---
@@ -222,7 +216,7 @@ LArm.Transparency = 0.3
 LArm.Adornee = game.Workspace.Monster.A['Left Arm']
 LArm.AlwaysOnTop = true
 LArm.Size = game.Workspace.Monster.A['Left Arm'].Size
-LArm.Visible = true
+LArm.Visible = _G.StanVis
 LArm.ZIndex = 10
 
 ---
@@ -235,7 +229,7 @@ LLeg.Transparency = 0.3
 LLeg.Adornee = game.Workspace.Monster.A['Left Leg']
 LLeg.AlwaysOnTop = true
 LLeg.Size = game.Workspace.Monster.A['Left Leg'].Size
-LLeg.Visible = true
+LLeg.Visible = false
 LLeg.ZIndex = 10
 
 ---
@@ -248,7 +242,7 @@ RArm.Transparency = 0.3
 RArm.Adornee = game.Workspace.Monster.A['Right Arm']
 RArm.AlwaysOnTop = true
 RArm.Size = game.Workspace.Monster.A['Right Arm'].Size
-RArm.Visible = true
+RArm.Visible = false
 RArm.ZIndex = 10
 
 ---
@@ -261,7 +255,7 @@ RLeg.Transparency = 0.3
 RLeg.Adornee = game.Workspace.Monster.A['Right Leg']
 RLeg.AlwaysOnTop = true
 RLeg.Size = game.Workspace.Monster.A['Right Leg'].Size
-RLeg.Visible = true
+RLeg.Visible = false
 RLeg.ZIndex = 10
 
 ---
@@ -274,30 +268,32 @@ Torso.Transparency = 0.3
 Torso.Adornee = game.Workspace.Monster.A.Torso
 Torso.AlwaysOnTop = true
 Torso.Size = game.Workspace.Monster.A.Torso.Size
-Torso.Visible = true
+Torso.Visible = false
 Torso.ZIndex = 10
 
 
 --
 
 game:GetService("RunService").RenderStepped:Connect(function()
-    if game.Workspace.Monster.A.Torso.Transparency == 0 then
-        Torso.Visible = true
-        AHead.Visible = true
-        RArm.Visible = true
-        RLeg.Visible = true
-        LLeg.Visible = true
-        LArm.Visible = true
-        
-        BillboardGui.Enabled = true
-    else
-        Torso.Visible = false
-        AHead.Visible = false
-        RArm.Visible = false
-        RLeg.Visible = false
-        LLeg.Visible = false
-        LArm.Visible = false
-        
-        BillboardGui.Enabled = false
+    if _G.StanVis == true then
+        if game.Workspace.Monster.A.Torso.Transparency == 0 then
+            Torso.Visible = true
+            AHead.Visible = true
+            RArm.Visible = true
+            RLeg.Visible = true
+            LLeg.Visible = true
+            LArm.Visible = true
+            
+            BillboardGui.Enabled = true
+        else
+            Torso.Visible = false
+            AHead.Visible = false
+            RArm.Visible = false
+            RLeg.Visible = false
+            LLeg.Visible = false
+            LArm.Visible = false
+            
+            BillboardGui.Enabled = false
+        end
     end
 end)
