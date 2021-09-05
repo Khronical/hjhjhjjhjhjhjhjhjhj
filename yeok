@@ -1,5 +1,7 @@
 -- Made by TrashScripterF
 
+_G.Looped
+
 assert(getrawmetatable, "Your exploit is not supported!")
 local mt = getrawmetatable(game)
 local make_writeable = make_writeable or setreadonly
@@ -23,123 +25,127 @@ end)
 while true do
     wait()
 	if _G.MainESPVis == true then
-		if _G.options["Hunters"] then
-			for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
-				if v:IsA("BasePart") and v.Name == "HumanoidRootPart" then
-					local b1 = Instance.new("BillboardGui")
-					local t1 = Instance.new("TextLabel")
-					BillboardGui = b1
-					TextLabel = t1
-					BillboardGui.Parent = v.Parent
-					BillboardGui.AlwaysOnTop = true
-					BillboardGui.LightInfluence = 1
-					BillboardGui.Size = UDim2.new(0, 50, 0, 50)
-					BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
-					TextLabel.Parent = BillboardGui
-					TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-					TextLabel.BackgroundTransparency = 1
-					TextLabel.Size = UDim2.new(1, 0, 1, 0)
-					TextLabel.Text = v.Parent.Name
-					TextLabel.TextColor3 = Color3.new(1, 0, 0)
-					TextLabel.TextScaled = true
-				end
-			end
-		end
-		if _G.options["Traps"] then
-			for i, v in pairs(workspace:GetChildren()) do 
-				if v.Name:find("Trap") or v.Name:find("Tripwire") then 
-					if v:FindFirstChildWhichIsA("BasePart") then 
-						local b2 = Instance.new("BillboardGui")
-						local t2 = Instance.new("TextLabel")
-						BillboardGui = b2
-						TextLabel = t2
-						BillboardGui.Parent = v
-						BillboardGui.AlwaysOnTop = true
-						BillboardGui.LightInfluence = 1
-						BillboardGui.Size = UDim2.new(0, 50, 0, 50)
-						BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
-						TextLabel.Parent = BillboardGui
-						TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-						TextLabel.BackgroundTransparency = 1
-						TextLabel.Size = UDim2.new(1, 0, 1, 0)
-						TextLabel.Text = v.Name
-						TextLabel.TextColor3 = Color3.new(1, 0, 0)
-						TextLabel.TextScaled = true
-					end
-				end
-			end
-		end
-		if _G.options["Items"] then
-			for i, v in pairs(workspace.Tools:GetChildren()) do 
-				if v:FindFirstChild("Handle") then 
-					local b3 = Instance.new("BillboardGui")
-					local t3 = Instance.new("TextLabel")
-					BillboardGui = b3
-					TextLabel = t3
-					BillboardGui.Parent = v
-					BillboardGui.AlwaysOnTop = true
-					BillboardGui.LightInfluence = 1
-					BillboardGui.Size = UDim2.new(0, 50, 0, 50)
-					BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
-					TextLabel.Parent = BillboardGui
-					TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-					TextLabel.BackgroundTransparency = 1
-					TextLabel.Size = UDim2.new(1, 0, 1, 0)
-					TextLabel.Text = v.Name
-					TextLabel.TextColor3 = Color3.new(0, 1, 0)
-					TextLabel.TextScaled = true
-				end
-			end
-		end
-		if _G.options["Threats"] then
-			for i, v in pairs(workspace.Threats:GetDescendants()) do 
-				if v.Name:find("HumanoidRootPart") then 
-					local b4 = Instance.new("BillboardGui")
-					local t4 = Instance.new("TextLabel")
-					BillboardGui = b4
-					TextLabel = t4
-					BillboardGui.Parent = v.Parent
-					BillboardGui.AlwaysOnTop = true
-					BillboardGui.LightInfluence = 1
-					BillboardGui.Size = UDim2.new(0, 50, 0, 50)
-					BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
-					TextLabel.Parent = BillboardGui
-					TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-					TextLabel.BackgroundTransparency = 1
-					TextLabel.Size = UDim2.new(1, 0, 1, 0)
-					TextLabel.Text = v.Parent.Name
-					TextLabel.TextColor3 = Color3.new(1, 0, 0)
-					TextLabel.TextScaled = true
-				end
-			end
-		end
-    for i,v in pairs(game.Workspace:GetDescendants()) do
-if v.Parent.Name == "Security" then
-local BillboardGui = Instance.new("BillboardGui")
-local TextLabel = Instance.new("TextLabel")
+        if Looped == false then
+            Looped = true
+            if _G.options["Hunters"] then
+                for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
+                    if v:IsA("BasePart") and v.Name == "HumanoidRootPart" then
+                        local b1 = Instance.new("BillboardGui")
+                        local t1 = Instance.new("TextLabel")
+                        BillboardGui = b1
+                        TextLabel = t1
+                        BillboardGui.Parent = v.Parent
+                        BillboardGui.AlwaysOnTop = true
+                        BillboardGui.LightInfluence = 1
+                        BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+                        BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+                        TextLabel.Parent = BillboardGui
+                        TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+                        TextLabel.BackgroundTransparency = 1
+                        TextLabel.Size = UDim2.new(1, 0, 1, 0)
+                        TextLabel.Text = v.Parent.Name
+                        TextLabel.TextColor3 = Color3.new(1, 0, 0)
+                        TextLabel.TextScaled = true
+                    end
+                end
+            end
+            if _G.options["Traps"] then
+                for i, v in pairs(workspace:GetChildren()) do 
+                    if v.Name:find("Trap") or v.Name:find("Tripwire") then 
+                        if v:FindFirstChildWhichIsA("BasePart") then 
+                            local b2 = Instance.new("BillboardGui")
+                            local t2 = Instance.new("TextLabel")
+                            BillboardGui = b2
+                            TextLabel = t2
+                            BillboardGui.Parent = v
+                            BillboardGui.AlwaysOnTop = true
+                            BillboardGui.LightInfluence = 1
+                            BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+                            BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+                            TextLabel.Parent = BillboardGui
+                            TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+                            TextLabel.BackgroundTransparency = 1
+                            TextLabel.Size = UDim2.new(1, 0, 1, 0)
+                            TextLabel.Text = v.Name
+                            TextLabel.TextColor3 = Color3.new(1, 0, 0)
+                            TextLabel.TextScaled = true
+                        end
+                    end
+                end
+            end
+            if _G.options["Items"] then
+                for i, v in pairs(workspace.Tools:GetChildren()) do 
+                    if v:FindFirstChild("Handle") then 
+                        local b3 = Instance.new("BillboardGui")
+                        local t3 = Instance.new("TextLabel")
+                        BillboardGui = b3
+                        TextLabel = t3
+                        BillboardGui.Parent = v
+                        BillboardGui.AlwaysOnTop = true
+                        BillboardGui.LightInfluence = 1
+                        BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+                        BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+                        TextLabel.Parent = BillboardGui
+                        TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+                        TextLabel.BackgroundTransparency = 1
+                        TextLabel.Size = UDim2.new(1, 0, 1, 0)
+                        TextLabel.Text = v.Name
+                        TextLabel.TextColor3 = Color3.new(0, 1, 0)
+                        TextLabel.TextScaled = true
+                    end
+                end
+            end
+            if _G.options["Threats"] then
+                for i, v in pairs(workspace.Threats:GetDescendants()) do 
+                    if v.Name:find("HumanoidRootPart") then 
+                        local b4 = Instance.new("BillboardGui")
+                        local t4 = Instance.new("TextLabel")
+                        BillboardGui = b4
+                        TextLabel = t4
+                        BillboardGui.Parent = v.Parent
+                        BillboardGui.AlwaysOnTop = true
+                        BillboardGui.LightInfluence = 1
+                        BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+                        BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+                        TextLabel.Parent = BillboardGui
+                        TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+                        TextLabel.BackgroundTransparency = 1
+                        TextLabel.Size = UDim2.new(1, 0, 1, 0)
+                        TextLabel.Text = v.Parent.Name
+                        TextLabel.TextColor3 = Color3.new(1, 0, 0)
+                        TextLabel.TextScaled = true
+                    end
+                end
+            end
+        for i,v in pairs(game.Workspace:GetDescendants()) do
+    if v.Parent.Name == "Security" then
+    local BillboardGui = Instance.new("BillboardGui")
+    local TextLabel = Instance.new("TextLabel")
 
-BillboardGui.Parent = v.Parent
-BillboardGui.Name = "StepCrate"
-BillboardGui.AlwaysOnTop = true
-BillboardGui.LightInfluence = 1
-BillboardGui.Size = UDim2.new(0, 50, 0, 50)
-BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+    BillboardGui.Parent = v.Parent
+    BillboardGui.Name = "StepCrate"
+    BillboardGui.AlwaysOnTop = true
+    BillboardGui.LightInfluence = 1
+    BillboardGui.Size = UDim2.new(0, 50, 0, 50)
+    BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
 
-TextLabel.Parent = BillboardGui
-TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-TextLabel.BackgroundTransparency = 1
-TextLabel.Size = UDim2.new(1, 0, 1, 0)
-TextLabel.Text = v.Parent.Parent["#Bypassable"].Item.Value
-TextLabel.TextColor3 = Color3.new(1, 1, 0)
-TextLabel.TextScaled = true
-end
-end
-	end
-end)
+    TextLabel.Parent = BillboardGui
+    TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Size = UDim2.new(1, 0, 1, 0)
+    TextLabel.Text = v.Parent.Parent["#Bypassable"].Item.Value
+    TextLabel.TextColor3 = Color3.new(1, 1, 0)
+    TextLabel.TextScaled = true
+    end
+    end
+    end
+    end
 end
 
 while true do
 	if _G.MainESPVis == false then
+	    if Looped == true then
+	        Looped = false
 		-- Chest ESP delete
 		for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
 			if v.Name == "BillboardGui" then
@@ -170,7 +176,6 @@ while true do
 			end
 		end
 	end
-end)
 end
 
 -- Stan NameMarker
