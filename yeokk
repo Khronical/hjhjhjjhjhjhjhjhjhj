@@ -161,7 +161,7 @@ TextLabel.Text = "Stan"
 TextLabel.TextColor3 = Color3.new(1, 0, 0)
 TextLabel.TextSize = 50
 TextLabel.TextStrokeTransparency = 0
-TextLabel.Visible = _G.StanVis
+TextLabel.Visible = false
 ---{end}---
 
 local AHead = Instance.new("BoxHandleAdornment")
@@ -172,7 +172,7 @@ AHead.Transparency = 0.3
 AHead.Adornee = game.Workspace.Monster.A.Head
 AHead.AlwaysOnTop = true
 AHead.Size = game.Workspace.Monster.A.Head.Size
-AHead.Visible = _G.StanVis
+AHead.Visible = false
 AHead.ZIndex = 10
 
 ---
@@ -185,7 +185,7 @@ LArm.Transparency = 0.3
 LArm.Adornee = game.Workspace.Monster.A['Left Arm']
 LArm.AlwaysOnTop = true
 LArm.Size = game.Workspace.Monster.A['Left Arm'].Size
-LArm.Visible = _G.StanVis
+LArm.Visible = false
 LArm.ZIndex = 10
 
 ---
@@ -264,5 +264,14 @@ game:GetService("RunService").RenderStepped:Connect(function()
             
             BillboardGui.Enabled = false
         end
+    elseif _G.StanVis == false then
+        Torso.Visible = false
+        AHead.Visible = false
+        RArm.Visible = false
+        RLeg.Visible = false
+        LLeg.Visible = false
+        LArm.Visible = false
+        
+        BillboardGui.Enabled = false
     end
 end)
