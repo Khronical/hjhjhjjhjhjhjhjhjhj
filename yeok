@@ -136,7 +136,9 @@ end
 end
 	end
 end)
+end
 
+while true do
 	if _G.MainESPVis == false then
 		-- Chest ESP delete
 		for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
