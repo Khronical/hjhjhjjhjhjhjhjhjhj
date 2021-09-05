@@ -177,6 +177,7 @@ while true do
 		end
 	end
 end
+end
 
 -- Stan NameMarker
 local BillboardGui = Instance.new("BillboardGui")
