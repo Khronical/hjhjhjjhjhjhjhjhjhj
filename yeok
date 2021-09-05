@@ -1,7 +1,5 @@
 -- Made by TrashScripterF
 
-local Looped = false
-
 assert(getrawmetatable, "Your exploit is not supported!")
 local mt = getrawmetatable(game)
 local make_writeable = make_writeable or setreadonly
@@ -25,8 +23,8 @@ end)
 while true do
     wait()
 	if _G.MainESPVis == true then
-        if Looped == false then
-            Looped = true
+        if _G.Looped == false then
+            _G.Looped = true
             if _G.options["Hunters"] then
                 for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
                     if v:IsA("BasePart") and v.Name == "HumanoidRootPart" then
@@ -144,8 +142,8 @@ end
 
 while true do
 	if _G.MainESPVis == false then
-	    if Looped == true then
-	        Looped = false
+	    if _G.Looped == true then
+	        _G.Looped = false
 		-- Chest ESP delete
 		for i,v in pairs(game.Workspace.AIHunter:GetDescendants()) do
 			if v.Name == "BillboardGui" then
