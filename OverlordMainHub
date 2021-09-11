@@ -458,7 +458,7 @@ CloseButton.MouseButton1Down:Connect(function()
 	MainContainer:TweenSize(UDim2.new(0, 535, 0, 0), "InOut", "Linear", 0.1)
 	wait(.1)
 	CloseButton.BackgroundTransparency = 1
-	MainContainer.Visible = false
+	MainContainer:Destroy()
 end)
 
 Confirm.MouseButton1Down:Connect(function()
