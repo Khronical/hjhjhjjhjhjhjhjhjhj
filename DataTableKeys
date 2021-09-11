@@ -1,4 +1,4 @@
 local keys = {
-    WhitelistedTestKey = true
+    OKADEOI = true
 }
 return keys
