@@ -1,5 +1,5 @@
 local games = {
-    [3095204897] = {
+    [3431407618] = {
         ["name"] = "Isle",
         ["function"] = function()
             print('Overlord-I was successfully executed!')
@@ -13,25 +13,25 @@ local games = {
         end
     },
     [2569453732] = {
-        ["name"] = "Rise of Nations"
+        ["name"] = "Rise of Nations",
         ["function"] = function()
             print('Overlord-RON was successfully executed!')
         end
     },
     [876052679] = {
-        ["name"] = "Robber"
+        ["name"] = "Robber",
         ["function"] = function()
             print('Overlord-R was successfully executed!')
         end
     },
     [1440936008] = {
-        ["name"] = "S.C.P. Site-19 Roleplay"
+        ["name"] = "S.C.P. Site-19 Roleplay",
         ["function"] = function()
             print('Overlord-SCP was successfully executed!')
         end
     },
     [2809202155] = {
-        ["name"] = "Your Bizarre Adventure"
+        ["name"] = "Your Bizarre Adventure",
         ["function"] = function()
             print('Overlord-YBA was successfully executed!')
         end
@@ -79,11 +79,12 @@ local Product = game:GetService("MarketplaceService")
 local Details = Product:GetProductInfo(game.PlaceId)
 local IconID = Details.IconImageAssetId
 
-ImageLabel.Image = "rbxassetid://"..IconID
-
 if games[game.PlaceId] then
+    if info.Name == 'Game' then
+        ImageLabel.Image = "rbxassetid://"..game:GetService("MarketplaceService"):GetProductInfo(3095204897).IconImageAssetId
+    end
     ImageLabel:TweenPosition(EndPos, "InOut", "Bounce", 0.5)
     wait(3)
-    pcall(games[game.PlaceId]["function"])
     ImageLabel:TweenPosition(StartPos, "InOut", "Elastic", 0.5)
+    pcall(games[game.PlaceId]["function"])
 end
