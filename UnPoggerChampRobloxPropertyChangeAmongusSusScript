@@ -249,6 +249,32 @@ OpenDoor = game.Workspace.Gate.Buttons.Open.ClickDetector
 fireclickdetector(OpenDoor)
 end)
 
+TransportationSection:addButton("Disable traps", function()
+while true do
+    wait(.55)
+if game:GetService("Workspace"):FindFirstChild("Guillotine") then
+game:GetService("Workspace").Guillotine:Destroy()
+if game:GetService("Workspace"):FindFirstChild("Turret") then
+game:GetService("Workspace").Turret:Destroy()
+while true do
+wait(.20)
+for i,v in pairs(workspace:GetDescendants()) do
+  if v.Name == "TouchInterest" and v.Parent.Name == 'Tripwire' then
+    v.Parent:Destroy()
+    end
+end
+end
+end
+end
+
+
+
+
+
+end
+end)
+
+
 TransportationSection:addButton("Noclip ["..clipbind.."]", function()
 	noclip = false
 	game:GetService('RunService').Stepped:connect(function()
@@ -358,7 +384,7 @@ getgenv().PredictionVelocity = 10 -- The speed of the PredictMovement feature
 loadstring(game:HttpGet("https://raw.githubusercontent.com/zxciaz/Universal-Scripts/main/Aimbot", true))()
 end)
 CombatSection3:addButton("Y to enable/disable, hold right click to use.", function()
-    end)
+end)
 
 CombatSection2:addToggle("Teleport on damage", nil, function(state)
 TPDMGEnabled = (state)
@@ -378,6 +404,32 @@ if Humanoid.Health < OldHealth then
             end)
         end
 end)
+
+
+
+CombatSection2:addToggle("Teleport on vest damage", nil, function(state)
+TPVESTDMGEnabled = (state)
+
+while TPVESTDMGEnabled do
+    wait(.67)
+    if game.Players.LocalPlayer:WaitForChild("Backpack"):FindFirstChild("Ballistic Vest") then
+local OldShield = game.Players.LocalPlayer:WaitForChild("Backpack"):FindFirstChild("Ballistic Vest")["#Shield"].Value
+        local Vest = game.Players.LocalPlayer:WaitForChild("Backpack"):FindFirstChild("Ballistic Vest")["#Shield"]
+Vest:GetPropertyChangedSignal("Value"):Connect(function()
+if Vest.Value < OldShield then
+    if TPVESTDMGEnabled then
+    
+
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SpecialRegions.Anomaly2.CFrame
+            OldShield = Vest.Value
+    end
+end
+    
+            end)
+    end
+end
+end)
+
 CombatSection2:addToggle("No gun slow", nil, function(state)
     noslow = (state)
     while noslow do
@@ -385,6 +437,105 @@ CombatSection2:addToggle("No gun slow", nil, function(state)
         if noslow == true then
             if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed < 16 then
                 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+            end
+        end
+    end
+end)
+local AD_Toggled = false
+
+CombatSection2:addToggle("Display Ammo", nil, function(value)
+    if value == true then
+        AD_Toggled = true
+        local AmmoGUI = Instance.new("BillboardGui")
+        local Ammo = Instance.new("TextLabel")
+
+        AmmoGUI.Name = "AmmoGUI"
+        AmmoGUI.Parent = game.Players.LocalPlayer.Character
+        AmmoGUI.Adornee = game.Players.LocalPlayer.Character
+        AmmoGUI.AlwaysOnTop = true
+        AmmoGUI.LightInfluence = 1
+        AmmoGUI.Size = UDim2.new(0, 200, 0, 50)
+            
+        Ammo.Name = "Ammo"
+        Ammo.Parent = AmmoGUI
+        Ammo.BackgroundColor3 = Color3.new(1, 1, 1)
+        Ammo.BackgroundTransparency = 1
+        Ammo.BorderSizePixel = 0
+        Ammo.Size = UDim2.new(0, 200, 0, 50)
+        Ammo.ZIndex = 2
+        Ammo.Font = Enum.Font.SourceSans
+        Ammo.Text = "[nil/nil]"
+        Ammo.TextColor3 = Color3.new(1, 1, 1)
+        Ammo.TextSize = 34
+        Ammo.TextStrokeTransparency = 0
+        Ammo.Visible = false
+
+        while true do
+            wait()
+            if AD_Toggled == true then
+                for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("Tool") then
+                        if v:FindFirstChild("Fire") then
+                            Ammo.Visible = true
+                            
+                            AmmoGUI.Parent = v.Handle
+                            AmmoGUI.Adornee = v.Handle
+    
+                            Ammo.Text = v.ToolTip
+                        end
+                    end
+                end
+            end
+        end
+    elseif value == false then
+        AD_Toggled = false
+        while true do
+            wait()
+            if AD_Toggled == false then
+                for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v.Name == "AmmoGUI" and v:IsA("BillboardGui") then
+                        v:WaitForChild("Ammo").Visible = false
+                        
+                        v.Parent = game.Players.LocalPlayer.Character
+                        v.Adornee = game.Players.LocalPlayer.Character
+                
+                        v:WaitForChild("Ammo").Text = "[nil/nil]"
+                        
+                        print(v)
+                    elseif v:IsA("Tool") then
+                        if v:FindFirstChild("Fire") then
+                            v.Handle:WaitForChild("AmmoGUI").Ammo.Visible = false
+                            
+                            v.Handle:WaitForChild("AmmoGUI").Parent = game.Players.LocalPlayer.Character
+                            v.Handle:WaitForChild("AmmoGUI").Adornee = game.Players.LocalPlayer.Character
+                
+                            v.Handle:WaitForChild("AmmoGUI"):WaitForChild("Ammo").Text = "[nil/nil]"
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+local ADEG = false
+
+CombatSection2:addToggle("Auto-Drop Empty Guns", nil, function(value)
+    if value == true then
+        ADEG = true
+    elseif value == false then
+        ADEG = false
+    end
+
+    while true do
+        wait(.55)
+        if ADEG == true then
+            for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v:IsA("Tool") and v:FindFirstChild("Ammo") then
+                    if v.Ammo.Value == 0 then
+                        v.RequestDrop:FireServer()
+                        print(v)
+                    end
+                end
             end
         end
     end
