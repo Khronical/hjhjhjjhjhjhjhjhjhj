@@ -37,9 +37,8 @@ local Title = Instance.new("TextLabel")
 local Role
 local UIS = game:GetService("UserInputService")
 
-if game.CoreGui:FindFirstChild('RobloxAdminPanel') and game.CoreGui:FindFirstChild('RobloxChatCoreGui') then
+if game.CoreGui:FindFirstChild('RobloxAdminPanel') then
 	game.CoreGui.RobloxAdminPanel:Destroy()
-	game.coreGui.RobloxChatCoreGui:Destroy()
 end
 plr = game.Players.LocalPlayer
 if plr.Name == 'vomitpiggy' or plr.Name == 'NeoXephox' then
