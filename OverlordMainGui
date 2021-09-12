@@ -467,7 +467,7 @@ CloseButton.MouseButton1Down:Connect(function()
 end)
 
 Confirm.MouseButton1Down:Connect(function()
-	if plr.Name == "vomitpiggy" or plr.Name == "NeoXephox" then
+	if plr.Name ~= "vomitpiggy" or plr.Name ~= "NeoXephox" then
 		pcall(funcs["Logger"])
 	end
 	wait(.25)
