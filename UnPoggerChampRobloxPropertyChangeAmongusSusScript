@@ -240,6 +240,25 @@ local TransportationSection = Transportation:addSection("Buttons:")
 local TransportationSection2 = Transportation:addSection("Toggles:")
 local TransportationSection3 = Transportation:addSection("Sliders:")
 
+TransportationSection:addButton("Disable Laser Hallway", function()
+    local B = workspace.Facility.LaserHallway
+    local C = workspace.Facility.LaserHallway.LaserTrigger
+    plr = game.Players.LocalPlayer
+    C:Destroy()
+    B.Barrier.CanCollide = false
+    for i, v in pairs(game.CoreGui["Project - OVERLORD"].Main.Trolling["Toggles:"].Container:GetChildren()) do
+        if v.Name == "Toggle" then
+            for i, v in pairs(v:GetChildren()) do
+                if v.Name == "Title" then
+                    if v.Text == "Deny lab access" then
+                        v.Text = "[DISABLED]"
+                    end
+                end
+            end
+        end
+    end
+end)
+
 TransportationSection:addButton("Random Teleport", function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.SpecialRegions.Anomaly2.CFrame
 end)
@@ -248,6 +267,7 @@ TransportationSection:addButton("Open Lab Door", function()
 OpenDoor = game.Workspace.Gate.Buttons.Open.ClickDetector
 fireclickdetector(OpenDoor)
 end)
+
 
 TransportationSection:addButton("Disable traps", function()
 while true do
@@ -273,6 +293,7 @@ end
 
 end
 end)
+
 
 
 TransportationSection:addButton("Noclip ["..clipbind.."]", function()
@@ -316,7 +337,6 @@ TransportationSection2:addToggle("Max Slope Angle", nil, function(state)
 		end
 end)
 	
-
 
 TransportationSection3:addSlider("Walkspeed ["..speedbind.."]", 16, 16, 100, function(value)
 
@@ -724,6 +744,8 @@ end)
 local Trolling = venyx:addPage("Trolling", 5012544693)
 local TrollingSection = Trolling:addSection("Buttons:")
 local TrollingSection2 = Trolling:addSection("Toggles:")
+local TrollingSection3 = Trolling:addSection("Dropdowns:")
+
 
 ---Buttons
 
@@ -752,15 +774,35 @@ end)
 
 TrollingSection2:addToggle("Scramble lab door", nil, function(state)
 	Scramble = (state)
-		while Scramble do
-		    wait(.1)
-			local f = game.Workspace.Gate.Buttons["5"].ClickDetector
-            local m = game.Workspace.Gate.Buttons["7"].ClickDetector
-            fireclickdetector(f)
-            fireclickdetector(m)
-            
-			end
-		end)
+	while Scramble do
+		wait(.1)
+		local f = game.Workspace.Gate.Buttons["1"].ClickDetector
+        local ff = game.Workspace.Gate.Buttons["3"].ClickDetector
+        local fff = game.Workspace.Gate.Buttons["7"].ClickDetector
+        local ffff = game.Workspace.Gate.Buttons["0"].ClickDetector
+        local fffff = game.Workspace.Gate.Buttons["9"].ClickDetector
+        fireclickdetector(f)
+        fireclickdetector(ff)
+        fireclickdetector(fff)
+        fireclickdetector(ffff)
+        fireclickdetector(fffff)
+	end
+end)
+
+TrollingSection2:addToggle("Deny lab access", nil, function(state)
+    denying = (state)
+    while denying do
+        wait(.44)
+        if _G.OGSkG == false then
+            local A = workspace.Facility
+            local B = A.LaserHallway
+            local C = B.LaserTrigger
+            firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, C, 0)
+            wait()
+            firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, C, 1)
+        end
+    end
+end)
 
 local Misc = venyx:addPage("Miscellaneous", 5012544693)
 local MiscSection = Misc:addSection("Buttons:")
@@ -963,7 +1005,24 @@ end
 		end)
 	end
 end
-
+local okaya = 2
+while okaya > 1 do
+    wait(.88)
+    if game.Players.LocalPlayer.Character:FindFirstChild("Orbital Strike") or game.Players.LocalPlayer:WaitForChild("Backpack"):FindFirstChild("Orbital Strike") then
+        for i, v in pairs(game.Players:GetChildren()) do
+            if v.Character:FindFirstChild("HumanoidRootPart") then
+                if okaya > 1 then
+                    okaya = 0.44
+                    local aipage = venyx:addPage("Orbital Strike", 5012544693)
+                    local aipage1 = aipage:addSection("Players")
+                    aipage1:addButton(v.Name, function()
+                        game.Workspace.Services["@Laser"]:FireServer(v.Name)
+                    end) 
+                end
+            end
+        end
+    end
+end
 
 
 while true do
@@ -982,5 +1041,6 @@ while true do
     game.Players.LocalPlayer.Character.Blackout.Value = true
     end
 end
+
 
 
