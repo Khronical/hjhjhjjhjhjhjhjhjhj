@@ -246,6 +246,7 @@ TransportationSection:addButton("Disable Laser Hallway", function()
     plr = game.Players.LocalPlayer
     C:Destroy()
     B.Barrier.CanCollide = false
+    _G.OGSkG == false
     for i, v in pairs(game.CoreGui["Project - OVERLORD"].Main.Trolling["Toggles:"].Container:GetChildren()) do
         if v.Name == "Toggle" then
             for i, v in pairs(v:GetChildren()) do
