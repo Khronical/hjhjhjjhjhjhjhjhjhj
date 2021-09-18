@@ -41,7 +41,6 @@ local WhitelistedHwid = {
 local plr = game.Players.LocalPlayer
 
 if WhitelistedHwid[hwid] then
-    print(hwid)
     local RobloxAdminPanel = Instance.new("ScreenGui")
     local MainContainer = Instance.new("Frame")
     local Divider = Instance.new("Frame")
