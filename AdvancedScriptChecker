@@ -3,7 +3,7 @@ local games = {
         ["name"] = "Isle",
         ["function"] = function()
             print('Overlord-I was successfully executed!')
-            loadstring(game:HttpGet("https://pastebin.com/6SkjrjAd"))()
+            loadstring(game:HttpGet("https://pastebin.com/raw/6SkjrjAd"))()
         end
     },
     [7180042682] = {
