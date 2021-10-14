@@ -1,4 +1,0 @@
-local keys = {
-    OKADEOI = true
-}
-return keys
