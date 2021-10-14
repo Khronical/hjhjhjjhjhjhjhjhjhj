@@ -1,1 +1,34 @@
+local IsleFunctions = {}
 
+function IsleFunctions:randomstring()
+	local length = math.random(10,20)
+	local array = {}
+	for i = 1, length do
+		array[i] = string.char(math.random(32, 126))
+	end
+	return table.concat(array)
+end
+function IsleFunctions:getKills(Player)
+	local target = tostring(Player)
+	if game:GetService("Players"):FindFirstChild(target) then
+		local Kills = tostring(game.Workspace.GameState.Statistics[target]["Players Killed"].Value)
+		return Kills
+	end
+end
+function IsleFunctions:getTravelDistance(Player)
+	local target = tostring(Player)
+	if game:GetService("Players"):FindFirstChild(target) then
+	    local RawTD = string.format("%.0f", game.Workspace.GameState.Statistics[target]["Distance Traveled"].Value)
+		local TravelDistance = tostring(RawTD)
+		return TravelDistance
+	end
+end
+function IsleFunctions:getUsedOxygen(Player)
+	local target = tostring(Player)
+	if game:GetService("Players"):FindFirstChild(target) then
+		local UsedOxygen = tostring(game.Workspace.GameState.Statistics[target]["Tank Oxygen Consumed"].Value)
+		return UsedOxygen
+	end
+end
+
+return IsleFunctions
