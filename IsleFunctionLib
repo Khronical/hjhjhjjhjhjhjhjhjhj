@@ -9,7 +9,6 @@
     -- By Khronical#1101
     Mentallity Function Library for Isle
 ]]
-
 local IsleFunctions = {}
 
 function IsleFunctions:randomstring()
@@ -46,6 +45,8 @@ function IsleFunctions:Orbital(Player)
     local TrolledPlayer = Player
     if game:GetService("Players"):FindFirstChild(TrolledPlayer) and game:GetService("Players").LocalPlayer.Character:FindFirstChild("Orbital Strike") then
         game:GetService("Workspace").Services["@Laser"]:FireServer(TrolledPlayer)
+        game.Players.LocalPlayer.Character["Orbital Strike"].Parent = game.Players.LocalPlayer.Backpack
+        game.Players.LocalPlayer.Backpack["Orbital Strike"].RequestDrop:FireServer()
     elseif game:GetService("Players"):FindFirstChild(TrolledPlayer) and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Orbital Strike") then
         game.Players.LocalPlayer.Backpack["Orbital Strike"].Parent = game.Players.LocalPlayer.Character
         game:GetService("Workspace").Services["@Laser"]:FireServer(TrolledPlayer)
