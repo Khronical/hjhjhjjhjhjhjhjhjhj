@@ -1,0 +1,280 @@
+--[[
+.___  ___.  _______ .__   __. .___________.    ___       __       __       __  .___________.____    ____  __       __  .______   
+|   \/   | |   ____||  \ |  | |           |   /   \     |  |     |  |     |  | |           |\   \  /   / |  |     |  | |   _  \  
+|  \  /  | |  |__   |   \|  | `---|  |----`  /  ^  \    |  |     |  |     |  | `---|  |----` \   \/   /  |  |     |  | |  |_)  | 
+|  |\/|  | |   __|  |  . `  |     |  |      /  /_\  \   |  |     |  |     |  |     |  |       \_    _/   |  |     |  | |   _  <  
+|  |  |  | |  |____ |  |\   |     |  |     /  _____  \  |  `----.|  `----.|  |     |  |         |  |     |  `----.|  | |  |_)  | 
+|__|  |__| |_______||__| \__|     |__|    /__/     \__\ |_______||_______||__|     |__|         |__|     |_______||__| |______/  
+                                                                                                                                 
+    -- By Khronical#1101
+    Mentallity Function Library for Isle
+]]
+
+if game.PlaceId == 3431407618 then
+    -- Variables:
+    local plr = game.Players.LocalPlayer
+    
+    -- Functions:
+    local IFL = loadstring(game:HttpGet("https://raw.githubusercontent.com/Khronical/hjhjhjjhjhjhjhjhjhj/main/IsleFunctionLib"))()
+    local R_T = IFL:randomstring()
+    
+    -- Instances:
+    local RandomString = Instance.new("ScreenGui")
+    local MainContainer = Instance.new("Frame")
+    local PlayerIcon = Instance.new("ImageLabel")
+    local UICorner = Instance.new("UICorner")
+    local PlayerName = Instance.new("TextLabel")
+    local PlayerList = Instance.new("ScrollingFrame")
+    local StatContainer = Instance.new("Frame")
+    local OC = Instance.new("TextLabel")
+    local PK = Instance.new("TextLabel")
+    local DT = Instance.new("TextLabel")
+    local HEALTH = Instance.new("TextLabel")
+    local DA = Instance.new("TextLabel")
+    local OSbutton = Instance.new("TextButton")
+    local UICorner_2 = Instance.new("UICorner")
+    local CloseButton = Instance.new("TextButton")
+    local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+    
+    --Properties:
+    RandomString.Name = R_T
+    RandomString.Parent = game.CoreGui
+    RandomString.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    
+    MainContainer.Name = "MainContainer"
+    MainContainer.Parent = RandomString
+    MainContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    MainContainer.BackgroundTransparency = 0.500
+    MainContainer.BorderColor3 = Color3.fromRGB(45, 45, 45)
+    MainContainer.BorderSizePixel = 5
+    MainContainer.ClipsDescendants = true
+    MainContainer.Position = UDim2.new(0.340923071, 0, 0.274853796, 0)
+    MainContainer.Size = UDim2.new(0, 517, 0, 385)
+    
+    PlayerIcon.Name = "PlayerIcon"
+    PlayerIcon.Parent = MainContainer
+    PlayerIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerIcon.BackgroundTransparency = 1
+    PlayerIcon.BorderSizePixel = 0
+    PlayerIcon.Position = UDim2.new(0.0406189561, 0, 0.0545454547, 0)
+    PlayerIcon.Size = UDim2.new(0, 78, 0, 78)
+    PlayerIcon.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+    
+    UICorner.CornerRadius = UDim.new(1, 0)
+    UICorner.Parent = PlayerIcon
+    
+    PlayerName.Name = "PlayerName"
+    PlayerName.Parent = MainContainer
+    PlayerName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerName.BackgroundTransparency = 1.000
+    PlayerName.BorderSizePixel = 0
+    PlayerName.Position = UDim2.new(0.214700192, 0, 0.0909090936, 0)
+    PlayerName.Size = UDim2.new(0, 377, 0, 50)
+    PlayerName.Font = Enum.Font.GothamBold
+    PlayerName.Text = ""
+    PlayerName.TextColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerName.TextScaled = true
+    PlayerName.TextSize = 14.000
+    PlayerName.TextStrokeTransparency = 0.000
+    PlayerName.TextWrapped = true
+    PlayerName.TextXAlignment = Enum.TextXAlignment.Left
+    
+    PlayerList.Name = "PlayerList"
+    PlayerList.Parent = MainContainer
+    PlayerList.Active = true
+    PlayerList.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    PlayerList.BackgroundTransparency = 0.500
+    PlayerList.BorderSizePixel = 0
+    PlayerList.Position = UDim2.new(0.603481591, 0, 0.363636345, 0)
+    PlayerList.Size = UDim2.new(0, 190, 0, 221)
+    PlayerList.ScrollBarThickness = 5
+    PlayerList.CanvasSize = UDim2.new(0,0,10,0)
+    
+    StatContainer.Name = "StatContainer"
+    StatContainer.Parent = MainContainer
+    StatContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    StatContainer.BackgroundTransparency = 0.500
+    StatContainer.BorderSizePixel = 0
+    StatContainer.Position = UDim2.new(0.0406189561, 0, 0.368831158, 0)
+    StatContainer.Size = UDim2.new(0, 260, 0, 219)
+    
+    OC.Name = "OC"
+    OC.Parent = StatContainer
+    OC.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    OC.BackgroundTransparency = 1.000
+    OC.BorderSizePixel = 0
+    OC.Position = UDim2.new(0.0423076935, 0, 0.552511454, 0)
+    OC.Size = UDim2.new(0, 237, 0, 41)
+    OC.Font = Enum.Font.GothamBold
+    OC.Text = "Oxygen Consumed : N/A"
+    OC.TextColor3 = Color3.fromRGB(255, 255, 255)
+    OC.TextSize = 20.000
+    
+    PK.Name = "PK"
+    PK.Parent = StatContainer
+    PK.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PK.BackgroundTransparency = 1.000
+    PK.BorderSizePixel = 0
+    PK.Position = UDim2.new(0.0423076935, 0, 0.684931517, 0)
+    PK.Size = UDim2.new(0, 237, 0, 41)
+    PK.Font = Enum.Font.GothamBold
+    PK.Text = "Distance Traveled : N/A"
+    PK.TextColor3 = Color3.fromRGB(255, 255, 255)
+    PK.TextSize = 20.000
+    
+    DT.Name = "DT"
+    DT.Parent = StatContainer
+    DT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    DT.BackgroundTransparency = 1.000
+    DT.BorderSizePixel = 0
+    DT.Position = UDim2.new(0.0423076935, 0, 0.812785387, 0)
+    DT.Size = UDim2.new(0, 237, 0, 41)
+    DT.Font = Enum.Font.GothamBold
+    DT.Text = "Player Kills : N/A"
+    DT.TextColor3 = Color3.fromRGB(255, 255, 255)
+    DT.TextSize = 20.000
+    
+    HEALTH.Name = "HEALTH"
+    HEALTH.Parent = StatContainer
+    HEALTH.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    HEALTH.BackgroundTransparency = 1.000
+    HEALTH.BorderSizePixel = 0
+    HEALTH.Position = UDim2.new(0.0423076935, 0, 0.0228310525, 0)
+    HEALTH.Size = UDim2.new(0, 237, 0, 25)
+    HEALTH.Font = Enum.Font.GothamBold
+    HEALTH.Text = "Health : N/A"
+    HEALTH.TextColor3 = Color3.fromRGB(255, 255, 255)
+    HEALTH.TextSize = 20.000
+    
+    DA.Name = "DistanceAway"
+    DA.Parent = StatContainer
+    DA.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    DA.BackgroundTransparency = 1.000
+    DA.BorderSizePixel = 0
+    DA.Position = UDim2.new(0.0423076935, 0, 0.1369863, 0)
+    DA.Size = UDim2.new(0, 237, 0, 25)
+    DA.Font = Enum.Font.GothamBold
+    DA.Text = "Distance Away : N/A"
+    DA.TextColor3 = Color3.fromRGB(255, 255, 255)
+    DA.TextSize = 20.000
+    
+    OSbutton.Name = "OSbutton"
+    OSbutton.Parent = MainContainer
+    OSbutton.BackgroundColor3 = Color3.fromRGB(44, 164, 255)
+    OSbutton.BorderSizePixel = 0
+    OSbutton.Position = UDim2.new(0.0986460373, 0, 0.555844188, 0)
+    OSbutton.Size = UDim2.new(0, 200, 0, 41)
+    OSbutton.Font = Enum.Font.GothamBold
+    OSbutton.Text = "Orbital Strike"
+    OSbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    OSbutton.TextSize = 25.000
+    OSbutton.MouseButton1Down:Connect(function()
+        IFL:Orbital(PlayerName.Text)
+    end)
+    
+    UICorner_2.CornerRadius = UDim.new(0, 3)
+    UICorner_2.Parent = OSbutton
+    
+    CloseButton.Name = "CloseButton"
+    CloseButton.Parent = MainContainer
+    CloseButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    CloseButton.BackgroundTransparency = 1.000
+    CloseButton.BorderSizePixel = 0
+    CloseButton.Position = UDim2.new(0.922630548, 0, 0, 0)
+    CloseButton.Size = UDim2.new(0, 40, 0, 35)
+    CloseButton.Font = Enum.Font.SourceSans
+    CloseButton.Text = "X"
+    CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    CloseButton.TextSize = 54.000
+    CloseButton.TextWrapped = true
+    CloseButton.MouseButton1Down:Connect(function()
+        for i, v in pairs(game:GetService("CoreGui"):GetDescendants()) do
+            if v:IsA("TextButton") and v.Text == "Orbital Strike" then
+                v.Parent.Parent:Destroy()
+            end
+        end
+    end)
+    
+    UIAspectRatioConstraint.Parent = MainContainer
+    UIAspectRatioConstraint.AspectRatio = 1.343
+    
+    for _, v in pairs(game:GetService("Players"):GetChildren()) do
+        local TextButton = Instance.new("TextButton")
+    
+        TextButton.Name = "PlayerButton"
+        TextButton.Parent = PlayerList
+        TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        TextButton.BackgroundTransparency = 0.300
+        TextButton.BorderSizePixel = 0
+        TextButton.Size = UDim2.new(0, 200, 0, 50)
+        TextButton.Font = Enum.Font.GothamBold
+        TextButton.Text = v.Name
+        TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        TextButton.TextScaled = true
+        TextButton.TextSize = 14.000
+        TextButton.TextStrokeTransparency = 0.000
+        TextButton.TextWrapped = true
+        TextButton.MouseButton1Down:Connect(function()
+            PlayerName.Text = v.Name
+            PlayerIcon.Image = "https://www.roblox.com/bust-thumbnail/image?userId=".. game.Players[PlayerName.Text].UserId .."&width=420&height=420&format=png"
+        end)
+    end
+    
+    local UIS = game:GetService('UserInputService')
+    local frame = MainContainer
+    local dragToggle = nil
+    local dragSpeed = 0.25
+    local dragStart = nil
+    local startPos = nil
+    
+    local function updateInput(input)
+     local delta = input.Position - dragStart
+     local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+      startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+     game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+    end
+    
+    frame.InputBegan:Connect(function(input)
+     if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+      dragToggle = true
+      dragStart = input.Position
+      startPos = frame.Position
+      input.Changed:Connect(function()
+       if input.UserInputState == Enum.UserInputState.End then
+        dragToggle = false
+       end
+      end)
+     end
+    end)
+    
+    UIS.InputChanged:Connect(function(input)
+     if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+      if dragToggle then
+       updateInput(input)
+      end
+     end
+    end)
+    
+    local UIGridLayout = Instance.new("UIGridLayout")
+    UIGridLayout.Parent = PlayerList
+    UIGridLayout.CellSize = UDim2.new(0, 190, 0, 40)
+    for i, v in pairs(RandomString:GetDescendants()) do
+        v.Name = IFL:randomstring()
+    end
+    
+    while wait() do
+        for i, v in pairs(PlayerList:GetChildren()) do
+            if v:IsA("TextButton") and game:GetService("Players"):FindFirstChild(v.Text) == nil then
+                v:Destroy()
+            end
+        end
+        if game:GetService("Players"):FindFirstChild(PlayerName.Text) then
+            OC.Text = "Tank Oxygen Consumed : ".. IFL:getUsedOxygen(PlayerName.Text)
+            PK.Text = "Distance Traveled : ".. IFL:getTravelDistance(PlayerName.Text)
+            DT.Text = "Player Kills : ".. IFL:getKills(PlayerName.Text)
+            HEALTH.Text = "Health : " .. game:GetService("Players")[PlayerName.Text].Character.Humanoid.Health
+            DA.Text = "Distance Away : " .. math.ceil(game.Players[PlayerName.Text]:DistanceFromCharacter(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Position))
+        end
+    end
+    end
+    
